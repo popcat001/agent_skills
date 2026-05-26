@@ -1,0 +1,344 @@
+# Jira Description Templates for Slack-Sourced Issues
+
+These templates follow Jira best practices: ELI5 summary, concise acceptance criteria, and links to detailed context.
+
+## Template 1: Bug Report from Slack
+
+h3. Summary
+[Simple explanation of the bug in 1-2 sentences]
+
+h3. Context from Slack
+*Original Thread*: [Slack Discussion|<slack_thread_url>]
+*Reported By*: @<slack_username>
+*Date*: <date>
+
+h3. Issue Description
+[Concise description of the problem]
+
+h3. Steps to Reproduce
+# Step 1
+# Step 2
+# Step 3
+
+h3. Expected Behavior
+[What should happen]
+
+h3. Actual Behavior
+[What actually happens]
+
+h3. Additional Context
+See original Slack thread for full discussion, screenshots, and error logs.
+
+---
+
+## Template 2: Feature Request from Slack
+
+h3. Summary
+[Simple explanation of what this feature does and why it's needed]
+
+h3. Context from Slack
+*Original Thread*: [Slack Discussion|<slack_thread_url>]
+*Requested By*: @<slack_username>
+*Participants*: @user1, @user2, @user3
+*Date*: <date>
+
+h3. Discussion Summary
+[Key points from the Slack discussion - why this is needed, who needs it, business value]
+
+h3. Acceptance Criteria
+# Criterion 1 - specific and testable
+# Criterion 2 - specific and testable
+# Criterion 3 - specific and testable
+
+h3. Additional Context
+See original Slack thread for full discussion history, mockups, and technical considerations.
+
+---
+
+## Template 3: Technical Debt / Improvement from Slack
+
+h3. Summary
+[Simple explanation of the improvement needed]
+
+h3. Context from Slack
+*Original Thread*: [Slack Discussion|<slack_thread_url>]
+*Raised By*: @<slack_username>
+*Date*: <date>
+
+h3. Current State
+[Brief description of current situation]
+
+h3. Proposed Improvement
+[Brief description of what should change]
+
+h3. Benefits
+* Benefit 1
+* Benefit 2
+* Benefit 3
+
+h3. Acceptance Criteria
+# Criterion 1
+# Criterion 2
+# Criterion 3
+
+h3. Additional Context
+See original Slack thread for technical discussion and implementation ideas.
+
+---
+
+## Template 4: Investigation / Spike from Slack
+
+h3. Summary
+[Simple explanation of what needs investigation]
+
+h3. Context from Slack
+*Original Thread*: [Slack Discussion|<slack_thread_url>]
+*Raised By*: @<slack_username>
+*Date*: <date>
+
+h3. Questions to Answer
+# Question 1
+# Question 2
+# Question 3
+
+h3. Expected Deliverables
+# Deliverable 1 (e.g., technical design doc)
+# Deliverable 2 (e.g., POC code)
+# Deliverable 3 (e.g., recommendation)
+
+h3. Time Box
+[Suggested time limit, e.g., "2 days"]
+
+h3. Additional Context
+See original Slack thread for background and initial discussion.
+
+---
+
+## Template 5: Incident / Production Issue from Slack
+
+h3. Summary
+[Simple explanation of the incident]
+
+h3. Context from Slack
+*Original Thread*: [Slack Discussion|<slack_thread_url>]
+*Reported By*: @<slack_username>
+*Date*: <date>
+*Severity*: [High/Critical/etc.]
+
+h3. Impact
+[Who/what was affected]
+
+h3. Timeline
+* *Detected*: <time>
+* *Investigation Started*: <time>
+* *Resolved*: <time> (if resolved)
+
+h3. Immediate Actions Taken
+# Action 1
+# Action 2
+# Action 3
+
+h3. Follow-up Actions Required
+# Action 1
+# Action 2
+# Action 3
+
+h3. Additional Context
+See original Slack thread for real-time incident communication and technical details.
+
+---
+
+## Template 6: Discussion Outcome / Decision from Slack
+
+h3. Summary
+[Simple explanation of the decision or outcome]
+
+h3. Context from Slack
+*Original Thread*: [Slack Discussion|<slack_thread_url>]
+*Participants*: @user1, @user2, @user3
+*Date*: <date>
+
+h3. Decision Summary
+[Key decision made - what was decided and why]
+
+h3. Alternatives Considered
+* Alternative 1 - [why not chosen]
+* Alternative 2 - [why not chosen]
+
+h3. Action Items
+# Action item 1 - [owner]
+# Action item 2 - [owner]
+# Action item 3 - [owner]
+
+h3. Additional Context
+See original Slack thread for full discussion, pros/cons analysis, and detailed reasoning.
+
+---
+
+## Template 7: Customer Feedback from Slack
+
+h3. Summary
+[Simple explanation of customer feedback/request]
+
+h3. Context from Slack
+*Original Thread*: [Slack Discussion|<slack_thread_url>]
+*Customer*: <customer_name>
+*Reported By*: @<slack_username> (CSM/Support)
+*Date*: <date>
+
+h3. Customer Need
+[What the customer is trying to achieve]
+
+h3. Current Limitation
+[What prevents them from achieving it]
+
+h3. Proposed Solution
+[What we should build/fix]
+
+h3. Business Impact
+* Impact 1 (e.g., revenue, retention)
+* Impact 2
+* Impact 3
+
+h3. Acceptance Criteria
+# Criterion 1
+# Criterion 2
+# Criterion 3
+
+h3. Additional Context
+See original Slack thread for customer quotes, screenshots, and detailed feedback.
+
+---
+
+## Template 8: Simple Task from Slack
+
+h3. Summary
+[Simple explanation of the task]
+
+h3. Context from Slack
+*Original Thread*: [Slack Discussion|<slack_thread_url>]
+*Requested By*: @<slack_username>
+*Date*: <date>
+
+h3. Task Details
+[Brief description of what needs to be done]
+
+h3. Acceptance Criteria
+# Criterion 1
+# Criterion 2
+# Criterion 3
+
+h3. Additional Context
+See original Slack thread for discussion.
+
+---
+
+## Usage Guidelines
+
+### Choosing a Template
+
+1. **Bug Report** - Use when Slack thread describes a defect or error
+2. **Feature Request** - Use when Slack thread proposes new functionality
+3. **Technical Debt** - Use when Slack thread discusses code improvements or refactoring
+4. **Investigation/Spike** - Use when Slack thread raises questions requiring research
+5. **Incident** - Use when Slack thread is about a production issue or outage
+6. **Decision** - Use when Slack thread reached a decision that needs tracking
+7. **Customer Feedback** - Use when Slack thread contains customer input
+8. **Simple Task** - Use for straightforward tasks that don't fit other categories
+
+### Filling Out Templates
+
+**Summary (ELI5)**:
+- Start with the most important information
+- Explain in simple terms (Explain Like I'm 5)
+- 1-2 sentences maximum
+- Anyone should understand without technical background
+
+**Context from Slack**:
+- Always include the Slack thread link
+- List key participants (@ mentions)
+- Include date for time context
+- Add any relevant metadata (severity, priority, etc.)
+
+**Discussion Summary**:
+- Extract key points from the thread
+- Focus on conclusions, not play-by-play
+- Highlight important decisions or insights
+- Keep it concise - full details are in Slack link
+
+**Acceptance Criteria**:
+- Make each criterion specific and testable
+- Use numbered list for clarity
+- Keep each point brief (one line if possible)
+- Focus on "what" not "how"
+
+**Additional Context**:
+- Always refer back to Slack for full details
+- Mention if there are screenshots, logs, or diagrams in Slack
+- Don't duplicate everything from Slack - link to it
+
+### Common Mistakes to Avoid
+
+**DON'T**:
+- Copy entire Slack conversation into Jira
+- Write verbose paragraphs
+- Include off-topic discussion
+- Forget to link back to Slack
+- Make assumptions without checking Slack thread
+- Leave placeholders like <slack_thread_url> unfilled
+
+**DO**:
+- Summarize key points concisely
+- Link to Slack for full context
+- Extract actionable acceptance criteria
+- Keep it scannable and easy to read
+- Update template with actual values
+- Follow Wiki syntax (not Markdown)
+
+### Wiki Syntax Reminders
+
+When filling templates, use correct Wiki syntax:
+
+- Headers: `h3. Header` (not `### Header`)
+- Bold: `*bold*` (not `**bold**`)
+- Links: `[text|url]` (not `[text](url)`)
+- Code: `{{code}}` (not `` `code` ``)
+- Lists: `* item` or `# item` (same as Markdown)
+
+### Automation Tips
+
+When using these templates programmatically:
+
+1. Parse Slack URL first
+2. Fetch thread content with `slack_get_thread_replies`
+3. Analyze content to determine appropriate template
+4. Extract key information (participants, date, summary)
+5. Fill in template with extracted data
+6. Save to file for review
+7. Create Jira issue with `jira_create.py`
+8. Reply to Slack thread with Jira link
+
+Example automation:
+```bash
+# 1. Parse URL
+python3 parse_slack_url.py "$SLACK_URL" > /tmp/parsed.json
+
+# 2. Extract data
+CHANNEL_ID=$(jq -r '.channel_id' /tmp/parsed.json)
+THREAD_TS=$(jq -r '.thread_ts' /tmp/parsed.json)
+
+# 3. Fetch thread (via MCP tool - use Claude to call)
+# slack_get_thread_replies({"channel_id": "$CHANNEL_ID", "thread_ts": "$THREAD_TS"})
+
+# 4. Analyze and fill template (AI-assisted)
+
+# 5. Create Jira issue
+python3 ../jira-integration/scripts/jira_create.py \
+  --project GS \
+  --summary "Title from Slack" \
+  --description-file /tmp/jira_desc.txt \
+  --type Story
+
+# 6. Reply to thread
+# slack_reply_to_thread({"channel_id": "$CHANNEL_ID", "thread_ts": "$THREAD_TS", "text": "Created GS-12345"})
+```
