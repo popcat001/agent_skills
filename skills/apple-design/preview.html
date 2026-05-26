@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>apple-design — Bento Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2/src/light/style.css">
+<style>
+/* ─── TOKENS ─────────────────────────────────────────────────────────────── */
+[data-theme="light"] {
+  --background: #FFFFFF;
+  --bg: #FFFFFF;
+  --surface1: #F5F5F7;
+  --surface2: #E8E8ED;
+  --surface3: #D2D2D7;
+  --border: #E8E8ED;
+  --border-visible: #D2D2D7;
+  --text1: #1D1D1F;
+  --text2: #6E6E73;
+  --text3: #8E8E93;
+  --text4: #AEAEB2;
+  --accent: #0071E3;
+  --accent-subtle: #EBF3FF;
+  --success: #30D158;
+  --success-bg: #F0FDF5;
+  --warning: #FF9F0A;
+  --warning-bg: #FFF6EC;
+  --error: #FF3B30;
+  --error-bg: #FFF0EF;
+  --shadow-1: 0 2px 8px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-2: 0 8px 30px rgba(0,0,0,0.08);
+}
+[data-theme="dark"] {
+  --background: #000000;
+  --bg: #000000;
+  --surface1: #1D1D1F;
+  --surface2: #3A3A3C;
+  --surface3: #48484A;
+  --border: #3A3A3C;
+  --border-visible: #48484A;
+  --text1: #F5F5F7;
+  --text2: #8E8E93;
+  --text3: #6E6E73;
+  --text4: #48484A;
+  --accent: #2997FF;
+  --accent-subtle: #001335;
+  --success: #30D158;
+  --success-bg: #082B14;
+  --warning: #FF9F0A;
+  --warning-bg: #2B1800;
+  --error: #FF3B30;
+  --error-bg: #2B0806;
+  --shadow-1: 0 2px 8px rgba(0,0,0,0.40);
+  --shadow-2: 0 8px 30px rgba(0,0,0,0.60);
+}
+
+/* ─── RESET ──────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
+  font-size: 17px;
+  background: var(--background);
+  color: var(--text1);
+  min-height: 100vh;
+  padding: 32px 24px 100px;
+  transition: background 300ms, color 300ms;
+}
+
+/* ─── GRID ───────────────────────────────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 160px 210px 200px auto;
+  gap: 12px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+/* ─── CARD BASE ──────────────────────────────────────────────────────────── */
+.card {
+  background: var(--surface1);
+  border-radius: 18px;
+  padding: 24px;
+  overflow: hidden;
+  position: relative;
+}
+.card.dark-card {
+  background: var(--text1);
+  color: var(--background);
+}
+.card-label {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.010em;
+  color: var(--text3);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.card-label.light { color: rgba(255,255,255,0.55); }
+.metric-value {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1;
+  color: var(--text1);
+}
+.metric-value.inverted { color: var(--background); }
+.metric-unit {
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--text2);
+  margin-left: 4px;
+}
+.metric-unit.inverted { color: rgba(255,255,255,0.6); }
+.metric-sub {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text3);
+  margin-top: 6px;
+}
+.metric-sub.inverted { color: rgba(255,255,255,0.45); }
+
+/* ─── WIDGET SPANS ───────────────────────────────────────────────────────── */
+.col-2 { grid-column: span 2; }
+.col-3 { grid-column: span 3; }
+.col-4 { grid-column: span 4; }
+
+/* ─── BATTERY WIDGET ─────────────────────────────────────────────────────── */
+.battery-wrap { display: flex; align-items: flex-end; gap: 16px; }
+.battery-icon {
+  display: flex; align-items: center; gap: 2px;
+  font-size: 11px; color: rgba(255,255,255,0.5);
+}
+.battery-body {
+  width: 44px; height: 22px;
+  border: 1.5px solid rgba(255,255,255,0.4);
+  border-radius: 4px;
+  padding: 2px;
+  position: relative;
+  display: flex; align-items: center;
+}
+.battery-body::after {
+  content: ''; position: absolute; right: -5px; top: 50%; transform: translateY(-50%);
+  width: 3px; height: 8px; background: rgba(255,255,255,0.4); border-radius: 0 2px 2px 0;
+}
+.battery-fill {
+  height: 100%; width: 87%; background: #30D158; border-radius: 2px;
+}
+
+/* ─── ACTIVITY RINGS ─────────────────────────────────────────────────────── */
+.rings-wrap { display: flex; align-items: center; gap: 20px; }
+.ring-svg { transform: rotate(-90deg); }
+.ring-track { fill: none; stroke-width: 8; stroke-linecap: round; }
+.ring-fill  { fill: none; stroke-width: 8; stroke-linecap: round; stroke-dasharray: 188; }
+.ring-labels { display: flex; flex-direction: column; gap: 10px; }
+.ring-label-row { display: flex; align-items: center; gap: 8px; font-size: 12px; }
+.ring-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+/* ─── STORAGE WIDGET ─────────────────────────────────────────────────────── */
+.storage-bar-track {
+  height: 6px; background: var(--surface2); border-radius: 980px; overflow: hidden; margin: 12px 0;
+}
+.storage-bar-fill {
+  height: 100%; width: 61%; background: var(--accent); border-radius: 980px;
+  transition: width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.storage-legend { display: flex; gap: 16px; flex-wrap: wrap; }
+.storage-legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text2); }
+.storage-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+/* ─── NOW PLAYING ────────────────────────────────────────────────────────── */
+.now-playing-art {
+  width: 64px; height: 64px; border-radius: 10px;
+  background: linear-gradient(135deg, #FF2D55 0%, #FF6B00 100%);
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px;
+}
+.now-playing-meta { flex: 1; min-width: 0; }
+.track-title { font-size: 15px; font-weight: 600; color: var(--text1); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.track-artist { font-size: 13px; color: var(--text3); margin-top: 2px; }
+.playbar-track { height: 3px; background: var(--surface2); border-radius: 980px; overflow: hidden; margin-top: 12px; }
+.playbar-fill  { height: 100%; width: 38%; background: var(--accent); border-radius: 980px; }
+.playback-controls { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; }
+.ctrl-btn { background: none; border: none; cursor: pointer; color: var(--text2); font-size: 16px; padding: 4px; display: flex; }
+.ctrl-btn.play { color: var(--text1); font-size: 20px; }
+.time-label { font-size: 11px; color: var(--text3); }
+
+/* ─── SPARKLINE ──────────────────────────────────────────────────────────── */
+.sparkline-svg { overflow: visible; }
+
+/* ─── PERFORMANCE WIDGET ─────────────────────────────────────────────────── */
+.perf-cores { display: flex; gap: 4px; margin-top: 8px; flex-wrap: wrap; }
+.perf-bar {
+  flex: 1; min-width: 12px; height: 48px; border-radius: 4px;
+  background: var(--surface2); position: relative; overflow: hidden;
+}
+.perf-bar-fill {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: var(--accent); border-radius: 4px 4px 0 0;
+  opacity: 0.85;
+}
+
+/* ─── TOKEN KEY ──────────────────────────────────────────────────────────── */
+.swatch-row { display: flex; gap: 6px; margin-bottom: 12px; }
+.swatch { width: 28px; height: 28px; border-radius: 8px; flex-shrink: 0; }
+.type-samples { display: flex; flex-direction: column; gap: 4px; }
+.type-sample-display { font-family: -apple-system, "SF Pro Display", "Inter", sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.015em; color: var(--text1); }
+.type-sample-body { font-size: 14px; color: var(--text2); }
+.type-sample-mono { font-family: "SF Mono", "JetBrains Mono", monospace; font-size: 11px; color: var(--text3); }
+.spacing-viz { display: flex; align-items: flex-end; gap: 3px; margin-top: 10px; }
+.space-block { background: var(--accent); opacity: 0.25; border-radius: 2px; }
+
+/* ─── WEATHER ────────────────────────────────────────────────────────────── */
+.weather-temp {
+  font-family: -apple-system, "SF Pro Display", "Inter", sans-serif;
+  font-size: 48px; font-weight: 300; letter-spacing: -0.015em;
+  color: var(--background); line-height: 1;
+}
+.weather-loc { font-size: 12px; font-weight: 500; letter-spacing: 0.010em; color: rgba(255,255,255,0.65); text-transform: uppercase; }
+.weather-desc { font-size: 14px; color: rgba(255,255,255,0.75); margin-top: 4px; }
+.weather-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background: linear-gradient(145deg, #1C6EF2 0%, #0057D8 60%, #003BA0 100%);
+  border-radius: 18px;
+}
+.weather-content { position: relative; z-index: 1; }
+
+/* ─── RECENT APPS ────────────────────────────────────────────────────────── */
+.app-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-top: 12px; }
+.app-icon {
+  width: 100%; aspect-ratio: 1;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+}
+.app-name { font-size: 10px; color: var(--text3); text-align: center; margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* ─── NOTIFICATIONS ──────────────────────────────────────────────────────── */
+.notif-row { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.notif-row:last-child { border-bottom: none; }
+.notif-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 14px; }
+.notif-text { flex: 1; min-width: 0; }
+.notif-title { font-size: 13px; font-weight: 500; color: var(--text1); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.notif-body  { font-size: 12px; color: var(--text3); margin-top: 1px; }
+.notif-time  { font-size: 11px; color: var(--text4); flex-shrink: 0; }
+
+/* ─── FLOATING BAR ───────────────────────────────────────────────────────── */
+.floating-bar {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+  z-index: 100; display: flex; align-items: center; gap: 4px;
+  background: rgba(255,255,255,0.85); backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(0,0,0,0.08); border-radius: 980px;
+  padding: 6px 8px; box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+[data-theme="dark"] .floating-bar {
+  background: rgba(29,29,31,0.85); border-color: rgba(255,255,255,0.08);
+}
+.mode-btn {
+  display: flex; align-items: center; gap: 6px;
+  background: none; border: none; cursor: pointer;
+  color: var(--text2); font-size: 13px; font-weight: 500;
+  padding: 7px 14px; border-radius: 980px;
+  transition: all 150ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  font-family: inherit;
+}
+.mode-btn:hover { color: var(--text1); background: var(--surface1); }
+.mode-btn.active { background: var(--text1); color: var(--background); }
+</style>
+</head>
+<body>
+
+<div class="grid">
+
+  <!-- ① Battery — dark card, 1 col -->
+  <div class="card dark-card">
+    <div class="card-label light">MacBook Pro</div>
+    <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+      <div class="battery-body">
+        <div class="battery-fill"></div>
+      </div>
+    </div>
+    <div class="metric-value inverted" style="font-size:40px;">87<span class="metric-unit inverted">%</span></div>
+    <div class="metric-sub inverted">4h 22m remaining</div>
+  </div>
+
+  <!-- ② Weather — dark card with blue gradient, 1 col -->
+  <div class="card" style="padding:0; overflow:hidden;">
+    <div class="weather-bg"></div>
+    <div class="weather-content" style="padding:24px;">
+      <div class="weather-loc">Cupertino, CA</div>
+      <div class="weather-temp">68°</div>
+      <div class="weather-desc">Partly Cloudy</div>
+    </div>
+  </div>
+
+  <!-- ③ Date/Time — large display, 1 col -->
+  <div class="card">
+    <div class="card-label">Friday</div>
+    <div class="metric-value" style="font-size:42px; letter-spacing:-0.015em;">18</div>
+    <div style="font-family:-apple-system,'SF Pro Display','Inter',sans-serif; font-size:14px; color:var(--text2); margin-top:4px;">April 2026</div>
+    <div style="font-size:28px; font-weight:600; letter-spacing:-0.010em; color:var(--text1); margin-top:8px;">9:41</div>
+    <div style="font-size:12px; color:var(--text3);">AM</div>
+  </div>
+
+  <!-- ④ Performance — M4 chip cores, 1 col -->
+  <div class="card">
+    <div class="card-label">M4 Pro · CPU</div>
+    <div style="font-size:24px; font-weight:600; letter-spacing:-0.010em; color:var(--text1);">14%</div>
+    <div class="perf-cores" style="margin-top:12px;">
+      <div class="perf-bar"><div class="perf-bar-fill" style="height:22%"></div></div>
+      <div class="perf-bar"><div class="perf-bar-fill" style="height:18%"></div></div>
+      <div class="perf-bar"><div class="perf-bar-fill" style="height:31%"></div></div>
+      <div class="perf-bar"><div class="perf-bar-fill" style="height:12%"></div></div>
+      <div class="perf-bar"><div class="perf-bar-fill" style="height:8%"></div></div>
+      <div class="perf-bar"><div class="perf-bar-fill" style="height:5%"></div></div>
+      <div class="perf-bar"><div class="perf-bar-fill" style="height:9%"></div></div>
+      <div class="perf-bar"><div class="perf-bar-fill" style="height:3%"></div></div>
+    </div>
+    <div class="metric-sub" style="margin-top:8px;">12 cores · 36 GB</div>
+  </div>
+
+  <!-- ROW 2 -->
+
+  <!-- ⑤ Now Playing — 2 cols -->
+  <div class="card col-2">
+    <div class="card-label">Apple Music</div>
+    <div style="display:flex; gap:16px; align-items:center;">
+      <div class="now-playing-art">♫</div>
+      <div class="now-playing-meta">
+        <div class="track-title">Daylight</div>
+        <div class="track-artist">David Kushner</div>
+        <div class="playbar-track"><div class="playbar-fill"></div></div>
+        <div class="playback-controls">
+          <span class="time-label">1:14</span>
+          <div style="display:flex;gap:16px;align-items:center;">
+            <button class="ctrl-btn"><i class="ph-light ph-skip-back"></i></button>
+            <button class="ctrl-btn play"><i class="ph-light ph-pause-circle"></i></button>
+            <button class="ctrl-btn"><i class="ph-light ph-skip-forward"></i></button>
+          </div>
+          <span class="time-label">3:18</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑥ Activity Rings — 1 col -->
+  <div class="card">
+    <div class="card-label">Activity</div>
+    <div class="rings-wrap">
+      <svg width="84" height="84" viewBox="0 0 84 84" class="ring-svg">
+        <circle class="ring-track" cx="42" cy="42" r="30" stroke="rgba(255,45,85,0.15)" stroke-dasharray="188"/>
+        <circle class="ring-fill" cx="42" cy="42" r="30" stroke="#FF2D55" stroke-dasharray="188" stroke-dashoffset="32"/>
+        <circle class="ring-track" cx="42" cy="42" r="22" stroke="rgba(48,209,88,0.15)" stroke-dasharray="138"/>
+        <circle class="ring-fill" cx="42" cy="42" r="22" stroke="#30D158" stroke-dasharray="138" stroke-dashoffset="18" style="stroke-width:7;"/>
+        <circle class="ring-track" cx="42" cy="42" r="14" stroke="rgba(90,200,250,0.15)" stroke-dasharray="88"/>
+        <circle class="ring-fill" cx="42" cy="42" r="14" stroke="#5AC8FA" stroke-dasharray="88" stroke-dashoffset="28" style="stroke-width:7;"/>
+      </svg>
+      <div class="ring-labels">
+        <div class="ring-label-row"><div class="ring-dot" style="background:#FF2D55"></div><span style="font-size:12px;color:var(--text2);">Move <strong style="color:var(--text1);">420</strong> <span style="color:var(--text3);">/ 500 cal</span></span></div>
+        <div class="ring-label-row"><div class="ring-dot" style="background:#30D158"></div><span style="font-size:12px;color:var(--text2);">Exercise <strong style="color:var(--text1);">34</strong> <span style="color:var(--text3);">/ 30 min</span></span></div>
+        <div class="ring-label-row"><div class="ring-dot" style="background:#5AC8FA"></div><span style="font-size:12px;color:var(--text2);">Stand <strong style="color:var(--text1);">8</strong> <span style="color:var(--text3);">/ 12 hr</span></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑦ Storage — 1 col -->
+  <div class="card">
+    <div class="card-label">Storage</div>
+    <div style="font-size:24px;font-weight:600;letter-spacing:-0.010em;color:var(--text1);">156 <span style="font-size:14px;font-weight:400;color:var(--text3);">of 512 GB</span></div>
+    <div class="storage-bar-track"><div class="storage-bar-fill"></div></div>
+    <div class="storage-legend">
+      <div class="storage-legend-item"><div class="storage-dot" style="background:var(--accent)"></div>Apps</div>
+      <div class="storage-legend-item"><div class="storage-dot" style="background:#FF9F0A"></div>Photos</div>
+      <div class="storage-legend-item"><div class="storage-dot" style="background:#FF2D55"></div>System</div>
+      <div class="storage-legend-item"><div class="storage-dot" style="background:var(--surface3)"></div>Free</div>
+    </div>
+  </div>
+
+  <!-- ROW 3 -->
+
+  <!-- ⑧ Recent — 4 app icons, 2 cols -->
+  <div class="card col-2">
+    <div class="card-label">Recents</div>
+    <div class="app-grid" style="grid-template-columns: repeat(6,1fr);">
+      <div><div class="app-icon" style="background:linear-gradient(135deg,#1877F2,#0A60D1);">🔵</div><div class="app-name">Safari</div></div>
+      <div><div class="app-icon" style="background:linear-gradient(135deg,#34C759,#27A847);">💬</div><div class="app-name">Messages</div></div>
+      <div><div class="app-icon" style="background:linear-gradient(135deg,#FF2D55,#CC0033);">🎵</div><div class="app-name">Music</div></div>
+      <div><div class="app-icon" style="background:linear-gradient(135deg,#007AFF,#0060CC);">📬</div><div class="app-name">Mail</div></div>
+      <div><div class="app-icon" style="background:linear-gradient(135deg,#FF9500,#CC7700);">🗺️</div><div class="app-name">Maps</div></div>
+      <div><div class="app-icon" style="background:linear-gradient(135deg,#5AC8FA,#32ADE6);">☁️</div><div class="app-name">Photos</div></div>
+    </div>
+  </div>
+
+  <!-- ⑨ Notifications — 2 cols -->
+  <div class="card col-2">
+    <div class="card-label">Notifications</div>
+    <div class="notif-row">
+      <div class="notif-icon" style="background:var(--accent-subtle);"><i class="ph-light ph-envelope" style="color:var(--accent);font-size:16px;"></i></div>
+      <div class="notif-text"><div class="notif-title">Jenna Wu</div><div class="notif-body">Are you joining the 3pm today?</div></div>
+      <div class="notif-time">9:32</div>
+    </div>
+    <div class="notif-row">
+      <div class="notif-icon" style="background:var(--success-bg);"><i class="ph-light ph-check-circle" style="color:var(--success);font-size:16px;"></i></div>
+      <div class="notif-text"><div class="notif-title">App Store</div><div class="notif-body">Xcode updated successfully</div></div>
+      <div class="notif-time">8:57</div>
+    </div>
+    <div class="notif-row">
+      <div class="notif-icon" style="background:var(--warning-bg);"><i class="ph-light ph-battery-warning" style="color:var(--warning);font-size:16px;"></i></div>
+      <div class="notif-text"><div class="notif-title">iPhone</div><div class="notif-body">iPhone battery at 20%</div></div>
+      <div class="notif-time">8:14</div>
+    </div>
+  </div>
+
+  <!-- ROW 4 — Token Key (full width) -->
+  <div class="card col-4" style="padding:28px 32px;">
+    <div class="card-label">Design Tokens</div>
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:32px; align-items:start;">
+      <!-- Colors -->
+      <div>
+        <div style="font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--text3);margin-bottom:10px;">Color Palette</div>
+        <div class="swatch-row">
+          <div><div class="swatch" style="background:#FFFFFF; box-shadow: inset 0 0 0 1px var(--border);"></div><div style="font-size:9px;color:var(--text4);text-align:center;margin-top:2px;">bg</div></div>
+          <div><div class="swatch" style="background:#F5F5F7;"></div><div style="font-size:9px;color:var(--text4);text-align:center;margin-top:2px;">surf1</div></div>
+          <div><div class="swatch" style="background:#1D1D1F;"></div><div style="font-size:9px;color:var(--text4);text-align:center;margin-top:2px;">text1</div></div>
+          <div><div class="swatch" style="background:#6E6E73;"></div><div style="font-size:9px;color:var(--text4);text-align:center;margin-top:2px;">text2</div></div>
+          <div><div class="swatch" style="background:#0071E3;"></div><div style="font-size:9px;color:var(--text4);text-align:center;margin-top:2px;">accent</div></div>
+          <div><div class="swatch" style="background:#30D158;"></div><div style="font-size:9px;color:var(--text4);text-align:center;margin-top:2px;">success</div></div>
+          <div><div class="swatch" style="background:#FF9F0A;"></div><div style="font-size:9px;color:var(--text4);text-align:center;margin-top:2px;">warning</div></div>
+          <div><div class="swatch" style="background:#FF3B30;"></div><div style="font-size:9px;color:var(--text4);text-align:center;margin-top:2px;">error</div></div>
+        </div>
+        <div style="margin-top:12px;">
+          <div style="display:flex;gap:6px;align-items:center;margin-bottom:6px;">
+            <div style="width:80px;height:36px;border-radius:980px;background:#000000;display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;font-weight:400;">Buy</div>
+            <div style="width:80px;height:36px;border-radius:980px;background:#0071E3;display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;font-weight:400;">Shop</div>
+            <div style="font-size:14px;color:#0071E3;font-weight:400;">Learn more →</div>
+          </div>
+        </div>
+      </div>
+      <!-- Typography -->
+      <div>
+        <div style="font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--text3);margin-bottom:10px;">Type Scale</div>
+        <div style="font-family:-apple-system,'SF Pro Display','Inter',sans-serif;font-size:28px;font-weight:600;letter-spacing:-0.010em;color:var(--text1);line-height:1.1;">Subheading</div>
+        <div style="font-size:17px;font-weight:400;color:var(--text2);margin-top:6px;line-height:1.52;">Body text at 17px regular — Apple's canonical reading size.</div>
+        <div style="font-size:14px;font-weight:400;color:var(--text3);margin-top:4px;">Body small · 14px</div>
+        <div style="font-size:12px;font-weight:400;color:var(--text4);margin-top:4px;letter-spacing:0.005em;">Caption · 12px regular</div>
+        <div style="font-family:'SF Mono','JetBrains Mono',monospace;font-size:11px;color:var(--text3);margin-top:4px;">Aa mono · SF Mono 11px</div>
+      </div>
+      <!-- Spacing + Radii -->
+      <div>
+        <div style="font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--text3);margin-bottom:10px;">Spacing & Radii</div>
+        <div class="spacing-viz">
+          <div class="space-block" style="width:2px;height:8px;"></div>
+          <div class="space-block" style="width:4px;height:16px;"></div>
+          <div class="space-block" style="width:8px;height:24px;"></div>
+          <div class="space-block" style="width:16px;height:32px;"></div>
+          <div class="space-block" style="width:24px;height:40px;"></div>
+          <div class="space-block" style="width:32px;height:48px;"></div>
+          <div class="space-block" style="width:48px;height:56px;"></div>
+          <div class="space-block" style="width:64px;height:64px;"></div>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:16px;align-items:center;flex-wrap:wrap;">
+          <div style="width:20px;height:20px;border-radius:8px;background:var(--accent);opacity:0.7;" title="element 8px"></div>
+          <div style="width:28px;height:28px;border-radius:12px;background:var(--accent);opacity:0.7;" title="input 12px"></div>
+          <div style="width:36px;height:36px;border-radius:18px;background:var(--accent);opacity:0.7;" title="card 18px"></div>
+          <div style="width:44px;height:44px;border-radius:980px;background:var(--accent);opacity:0.7;" title="pill 980px"></div>
+        </div>
+        <div style="font-size:11px;color:var(--text4);margin-top:6px;">8px · 12px · 18px · pill</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /grid -->
+
+<!-- Floating bar -->
+<div class="floating-bar">
+  <button class="mode-btn active" data-mode="light" aria-label="Light mode">
+    <i class="ph-light ph-sun"></i> Light
+  </button>
+  <button class="mode-btn" data-mode="dark" aria-label="Dark mode">
+    <i class="ph-light ph-moon"></i> Dark
+  </button>
+</div>
+
+<script>
+const html = document.documentElement;
+document.querySelectorAll('.mode-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    html.setAttribute('data-theme', btn.dataset.mode);
+    document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b === btn));
+  });
+});
+</script>
+</body>
+</html>

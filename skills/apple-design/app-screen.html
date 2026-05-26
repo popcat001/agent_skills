@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>apple-design — App Screen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2/src/light/style.css">
+<style>
+[data-theme="light"] {
+  --bg: #FFFFFF; --surface1: #F5F5F7; --surface2: #E8E8ED; --surface3: #D2D2D7;
+  --border: #E8E8ED; --border-visible: #D2D2D7;
+  --text1: #1D1D1F; --text2: #6E6E73; --text3: #8E8E93; --text4: #AEAEB2;
+  --accent: #0071E3; --accent-subtle: #EBF3FF;
+  --success: #30D158; --success-bg: #F0FDF5;
+  --warning: #FF9F0A; --warning-bg: #FFF6EC;
+  --error: #FF3B30; --error-bg: #FFF0EF;
+}
+[data-theme="dark"] {
+  --bg: #000000; --surface1: #1D1D1F; --surface2: #3A3A3C; --surface3: #48484A;
+  --border: #3A3A3C; --border-visible: #48484A;
+  --text1: #F5F5F7; --text2: #8E8E93; --text3: #6E6E73; --text4: #48484A;
+  --accent: #2997FF; --accent-subtle: #001335;
+  --success: #30D158; --success-bg: #082B14;
+  --warning: #FF9F0A; --warning-bg: #2B1800;
+  --error: #FF3B30; --error-bg: #2B0806;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
+  background: var(--surface1); color: var(--text1);
+  min-height: 100vh; padding: 40px 24px 100px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── BROWSER FRAME ──────────────────────────────────────────────────────── */
+.browser-wrap {
+  max-width: 1200px; margin: 0 auto;
+  background: var(--bg);
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.12), 0 8px 24px rgba(0,0,0,0.08);
+  overflow: hidden;
+  border: 1px solid var(--border-visible);
+}
+.browser-chrome {
+  background: var(--surface1);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+.browser-dots { display: flex; gap: 6px; }
+.browser-dot { width: 12px; height: 12px; border-radius: 50%; }
+.browser-dot.red    { background: #FF5F56; }
+.browser-dot.yellow { background: #FFBD2E; }
+.browser-dot.green  { background: #27C93F; }
+.browser-url {
+  flex: 1; max-width: 480px; margin: 0 auto;
+  background: var(--surface2); border-radius: 8px;
+  padding: 5px 12px; font-size: 12px; color: var(--text2);
+  display: flex; align-items: center; gap: 6px;
+}
+.browser-url i { font-size: 12px; color: var(--text3); }
+
+/* ─── APP LAYOUT ─────────────────────────────────────────────────────────── */
+.app-layout { display: flex; height: 680px; }
+
+/* Sidebar */
+.sidebar {
+  width: 280px; flex-shrink: 0;
+  background: var(--surface1); border-right: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  overflow: hidden;
+}
+.sidebar-header {
+  padding: 20px 20px 12px;
+  border-bottom: 1px solid var(--border);
+}
+.sidebar-title {
+  font-family: -apple-system, "SF Pro Display", "Inter", sans-serif;
+  font-size: 22px; font-weight: 600; letter-spacing: -0.010em; color: var(--text1);
+}
+.sidebar-sub { font-size: 12px; color: var(--text3); margin-top: 2px; }
+.sidebar-search {
+  margin: 12px 16px;
+  background: var(--surface2); border-radius: 8px;
+  padding: 7px 12px; display: flex; align-items: center; gap: 8px;
+}
+.sidebar-search input {
+  background: none; border: none; outline: none;
+  font-size: 14px; color: var(--text1); flex: 1; font-family: inherit;
+}
+.sidebar-search input::placeholder { color: var(--text3); }
+.product-list { flex: 1; overflow-y: auto; padding: 4px 8px; }
+.product-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 12px; border-radius: 10px; cursor: pointer;
+  transition: background 150ms;
+}
+.product-item:hover { background: var(--surface2); }
+.product-item.selected { background: var(--accent-subtle); }
+.product-thumb {
+  width: 40px; height: 40px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.product-info { flex: 1; min-width: 0; }
+.product-name { font-size: 13px; font-weight: 500; color: var(--text1); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.product-type { font-size: 11px; color: var(--text3); margin-top: 1px; }
+.product-price { font-size: 12px; font-weight: 600; color: var(--accent); flex-shrink: 0; }
+
+/* Main content */
+.main-content {
+  flex: 1; display: flex; flex-direction: column; overflow: hidden;
+}
+.content-header {
+  background: rgba(255,255,255,0.72); backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 28px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+[data-theme="dark"] .content-header { background: rgba(0,0,0,0.72); }
+.content-header-title { font-size: 15px; font-weight: 600; color: var(--text1); }
+.content-header-breadcrumb { font-size: 12px; color: var(--text3); }
+.header-actions { display: flex; gap: 8px; }
+.header-btn {
+  background: var(--accent); color: #fff; border: none; cursor: pointer;
+  padding: 8px 16px; border-radius: 980px; font-size: 13px; font-weight: 400;
+  font-family: inherit;
+}
+.header-btn.secondary { background: var(--surface2); color: var(--text1); }
+
+/* Content scrollable area */
+.content-body { flex: 1; overflow-y: auto; padding: 28px; display: flex; flex-direction: column; gap: 24px; }
+
+/* Config hero */
+.config-hero {
+  background: #000; border-radius: 18px; padding: 32px 36px;
+  display: flex; align-items: center; gap: 36px; position: relative; overflow: hidden;
+  min-height: 160px;
+}
+.config-hero-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 80% at 80% 50%, rgba(255,255,255,0.04), transparent);
+}
+.config-hero-img {
+  width: 100px; height: 100px; border-radius: 12px;
+  background: linear-gradient(135deg, #2A2A2E 0%, #1A1A1E 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 40px; flex-shrink: 0; position: relative; z-index: 1;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.config-hero-info { position: relative; z-index: 1; }
+.config-hero-category { font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 8px; }
+.config-hero-name { font-family: -apple-system, "SF Pro Display", "Inter", sans-serif; font-size: 28px; font-weight: 600; letter-spacing: -0.010em; color: #F5F5F7; line-height: 1.1; }
+.config-hero-sub { font-size: 14px; color: rgba(255,255,255,0.55); margin-top: 6px; }
+.config-hero-price { font-family: -apple-system, "SF Pro Display", "Inter", sans-serif; font-size: 22px; font-weight: 600; color: #fff; margin-top: 8px; }
+.config-hero-ctas { display: flex; gap: 10px; margin-top: 16px; }
+.btn-pill-white { background: #fff; color: #000; border: none; padding: 10px 20px; border-radius: 980px; font-size: 14px; font-weight: 400; cursor: pointer; font-family: inherit; }
+.btn-pill-ghost { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.4); padding: 10px 20px; border-radius: 980px; font-size: 14px; font-weight: 400; cursor: pointer; font-family: inherit; }
+
+/* Config options */
+.config-section-title { font-size: 15px; font-weight: 600; color: var(--text1); margin-bottom: 12px; letter-spacing: -0.005em; }
+.config-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.config-option {
+  border: 1px solid var(--border-visible); border-radius: 12px; padding: 14px 16px;
+  cursor: pointer; transition: all 150ms;
+}
+.config-option:hover { border-color: var(--accent); }
+.config-option.selected { border-color: var(--accent); background: var(--accent-subtle); }
+.config-option-name { font-size: 13px; font-weight: 500; color: var(--text1); }
+.config-option-detail { font-size: 12px; color: var(--text3); margin-top: 2px; }
+.config-option-price { font-size: 13px; color: var(--accent); margin-top: 6px; }
+
+/* Spec table */
+.spec-table { width: 100%; border-collapse: collapse; }
+.spec-table td { padding: 11px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+.spec-table td:first-child { color: var(--text2); width: 40%; }
+.spec-table td:last-child { color: var(--text1); font-weight: 400; }
+.spec-table tr:last-child td { border-bottom: none; }
+
+/* Summary bar */
+.summary-bar {
+  background: var(--surface1); border-top: 1px solid var(--border);
+  padding: 14px 28px; display: flex; align-items: center; justify-content: space-between;
+}
+.summary-total { font-family: -apple-system, "SF Pro Display", "Inter", sans-serif; font-size: 20px; font-weight: 600; letter-spacing: -0.010em; color: var(--text1); }
+.summary-sub { font-size: 12px; color: var(--text3); margin-top: 2px; }
+.summary-actions { display: flex; gap: 10px; }
+
+/* CURSOR — fake hover on M4 Pro option */
+.cursor-indicator {
+  position: absolute; width: 12px; height: 18px;
+  pointer-events: none; z-index: 50;
+}
+
+/* ─── FLOATING BAR ───────────────────────────────────────────────────────── */
+.floating-bar {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+  z-index: 200; display: flex; align-items: center; gap: 4px;
+  background: rgba(255,255,255,0.85); backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(0,0,0,0.08); border-radius: 980px;
+  padding: 6px 8px; box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+[data-theme="dark"] .floating-bar { background: rgba(29,29,31,0.85); border-color: rgba(255,255,255,0.08); }
+.mode-btn {
+  display: flex; align-items: center; gap: 6px; background: none; border: none;
+  cursor: pointer; color: var(--text2); font-size: 13px; font-weight: 500;
+  padding: 7px 14px; border-radius: 980px; transition: all 150ms; font-family: inherit;
+}
+.mode-btn:hover { color: var(--text1); background: var(--surface1); }
+.mode-btn.active { background: var(--text1); color: var(--bg); }
+</style>
+</head>
+<body>
+
+<!-- Browser frame -->
+<div class="browser-wrap">
+  <div class="browser-chrome">
+    <div class="browser-dots">
+      <div class="browser-dot red"></div>
+      <div class="browser-dot yellow"></div>
+      <div class="browser-dot green"></div>
+    </div>
+    <div class="browser-url">
+      <i class="ph-light ph-lock-simple"></i>
+      apple.com/shop/buy-mac/macbook-pro
+    </div>
+  </div>
+
+  <div class="app-layout">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-title">MacBook Pro</div>
+        <div class="sidebar-sub">Choose your configuration</div>
+      </div>
+      <div class="sidebar-search">
+        <i class="ph-light ph-magnifying-glass" style="color:var(--text3);font-size:14px;"></i>
+        <input type="text" placeholder="Search models" disabled>
+      </div>
+      <div class="product-list">
+        <div style="font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--text4);padding:8px 12px 4px;">14-inch</div>
+        <div class="product-item selected">
+          <div class="product-thumb" style="background:var(--surface2);">💻</div>
+          <div class="product-info">
+            <div class="product-name">MacBook Pro 14"</div>
+            <div class="product-type">M4 Pro · 24 GB · 512 GB</div>
+          </div>
+          <div class="product-price">$1,999</div>
+        </div>
+        <div class="product-item">
+          <div class="product-thumb" style="background:var(--surface2);">💻</div>
+          <div class="product-info">
+            <div class="product-name">MacBook Pro 14"</div>
+            <div class="product-type">M4 Pro · 24 GB · 1 TB</div>
+          </div>
+          <div class="product-price">$2,199</div>
+        </div>
+        <div class="product-item">
+          <div class="product-thumb" style="background:var(--surface2);">💻</div>
+          <div class="product-info">
+            <div class="product-name">MacBook Pro 14"</div>
+            <div class="product-type">M4 Max · 36 GB · 1 TB</div>
+          </div>
+          <div class="product-price">$2,799</div>
+        </div>
+        <div style="font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--text4);padding:12px 12px 4px;">16-inch</div>
+        <div class="product-item">
+          <div class="product-thumb" style="background:var(--surface2);">💻</div>
+          <div class="product-info">
+            <div class="product-name">MacBook Pro 16"</div>
+            <div class="product-type">M4 Pro · 24 GB · 512 GB</div>
+          </div>
+          <div class="product-price">$2,499</div>
+        </div>
+        <div class="product-item">
+          <div class="product-thumb" style="background:var(--surface2);">💻</div>
+          <div class="product-info">
+            <div class="product-name">MacBook Pro 16"</div>
+            <div class="product-type">M4 Max · 48 GB · 1 TB</div>
+          </div>
+          <div class="product-price">$3,499</div>
+        </div>
+        <div class="product-item">
+          <div class="product-thumb" style="background:var(--surface2);">💻</div>
+          <div class="product-info">
+            <div class="product-name">MacBook Pro 16"</div>
+            <div class="product-type">M4 Max · 128 GB · 4 TB</div>
+          </div>
+          <div class="product-price">$5,999</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main-content">
+      <div class="content-header">
+        <div>
+          <div class="content-header-breadcrumb">Mac › MacBook Pro</div>
+          <div class="content-header-title">MacBook Pro 14-inch — M4 Pro</div>
+        </div>
+        <div class="header-actions">
+          <button class="header-btn secondary" disabled>Compare</button>
+          <button class="header-btn" disabled>Add to Bag</button>
+        </div>
+      </div>
+
+      <div class="content-body">
+
+        <!-- Hero card -->
+        <div class="config-hero">
+          <div class="config-hero-bg"></div>
+          <div class="config-hero-img">💻</div>
+          <div class="config-hero-info">
+            <div class="config-hero-category">MacBook Pro</div>
+            <div class="config-hero-name">14-inch<br>M4 Pro</div>
+            <div class="config-hero-sub">Space Black · 14.2" Liquid Retina XDR</div>
+            <div class="config-hero-price">From $1,999.00</div>
+            <div class="config-hero-ctas">
+              <button class="btn-pill-white" disabled>Buy</button>
+              <button class="btn-pill-ghost" disabled>Learn more →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chip selector -->
+        <div>
+          <div class="config-section-title">Chip</div>
+          <div class="config-grid" style="grid-template-columns: repeat(2, 1fr);">
+            <div class="config-option selected" style="position:relative;">
+              <div class="config-option-name">Apple M4 Pro</div>
+              <div class="config-option-detail">14-core CPU · 20-core GPU · 16-core Neural Engine</div>
+              <div class="config-option-price">Included</div>
+              <!-- fake cursor hovering -->
+              <svg style="position:absolute;top:12px;right:12px;width:14px;height:20px;" viewBox="0 0 14 20" fill="none">
+                <path d="M0 0L0 15L3.5 11.5L5.5 17L7.5 16.2L5.5 10.5H10L0 0Z" fill="var(--text1)" stroke="var(--bg)" stroke-width="0.5"/>
+              </svg>
+            </div>
+            <div class="config-option">
+              <div class="config-option-name">Apple M4 Max</div>
+              <div class="config-option-detail">14-core CPU · 32-core GPU · 16-core Neural Engine</div>
+              <div class="config-option-price">+$400.00</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Memory selector -->
+        <div>
+          <div class="config-section-title">Memory</div>
+          <div class="config-grid" style="grid-template-columns: repeat(3, 1fr);">
+            <div class="config-option selected">
+              <div class="config-option-name">24 GB</div>
+              <div class="config-option-detail">Unified Memory</div>
+              <div class="config-option-price">Included</div>
+            </div>
+            <div class="config-option">
+              <div class="config-option-name">48 GB</div>
+              <div class="config-option-detail">Unified Memory</div>
+              <div class="config-option-price">+$200.00</div>
+            </div>
+            <div class="config-option">
+              <div class="config-option-name">96 GB</div>
+              <div class="config-option-detail">Unified Memory</div>
+              <div class="config-option-price">+$400.00</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Storage selector -->
+        <div>
+          <div class="config-section-title">Storage</div>
+          <div class="config-grid" style="grid-template-columns: repeat(4, 1fr);">
+            <div class="config-option">
+              <div class="config-option-name">512 GB</div>
+              <div class="config-option-detail">SSD</div>
+              <div class="config-option-price">Included</div>
+            </div>
+            <div class="config-option selected">
+              <div class="config-option-name">1 TB</div>
+              <div class="config-option-detail">SSD</div>
+              <div class="config-option-price">+$200.00</div>
+            </div>
+            <div class="config-option">
+              <div class="config-option-name">2 TB</div>
+              <div class="config-option-detail">SSD</div>
+              <div class="config-option-price">+$400.00</div>
+            </div>
+            <div class="config-option">
+              <div class="config-option-name">4 TB</div>
+              <div class="config-option-detail">SSD</div>
+              <div class="config-option-price">+$800.00</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Specs table -->
+        <div style="background:var(--surface1);border-radius:18px;padding:20px 24px;">
+          <div class="config-section-title">Technical Specifications</div>
+          <table class="spec-table">
+            <tr><td>Chip</td><td>Apple M4 Pro</td></tr>
+            <tr><td>CPU</td><td>14-core (10 performance, 4 efficiency)</td></tr>
+            <tr><td>GPU</td><td>20-core</td></tr>
+            <tr><td>Neural Engine</td><td>16-core · 38 TOPS</td></tr>
+            <tr><td>Memory</td><td>24 GB unified memory</td></tr>
+            <tr><td>Storage</td><td>1 TB SSD</td></tr>
+            <tr><td>Display</td><td>14.2-inch Liquid Retina XDR, 3024 × 1964, 120Hz ProMotion</td></tr>
+            <tr><td>Battery</td><td>Up to 24 hours wireless web</td></tr>
+            <tr><td>Weight</td><td>3.5 lbs (1.58 kg)</td></tr>
+            <tr><td>Color</td><td>Space Black, Silver</td></tr>
+          </table>
+        </div>
+
+      </div><!-- /content-body -->
+
+      <!-- Summary bar -->
+      <div class="summary-bar">
+        <div>
+          <div class="summary-total">$2,199.00</div>
+          <div class="summary-sub">M4 Pro · 24 GB · 1 TB · Space Black</div>
+        </div>
+        <div class="summary-actions">
+          <button class="header-btn secondary" disabled>Save for later</button>
+          <button class="header-btn" disabled>Add to Bag</button>
+        </div>
+      </div>
+    </div><!-- /main-content -->
+
+  </div><!-- /app-layout -->
+</div><!-- /browser-wrap -->
+
+<!-- FLOATING BAR -->
+<div class="floating-bar">
+  <button class="mode-btn active" data-mode="light"><i class="ph-light ph-sun"></i> Light</button>
+  <button class="mode-btn" data-mode="dark"><i class="ph-light ph-moon"></i> Dark</button>
+</div>
+
+<script>
+const html = document.documentElement;
+document.querySelectorAll('.mode-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    html.setAttribute('data-theme', btn.dataset.mode);
+    document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b === btn));
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>apple-design — Landing Page</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2/src/light/style.css">
+<style>
+[data-theme="light"] {
+  --bg: #FFFFFF; --surface1: #F5F5F7; --surface2: #E8E8ED;
+  --border: #E8E8ED; --border-visible: #D2D2D7;
+  --text1: #1D1D1F; --text2: #6E6E73; --text3: #8E8E93; --text4: #AEAEB2;
+  --accent: #0071E3; --accent-subtle: #EBF3FF;
+  --success: #30D158; --warning: #FF9F0A; --error: #FF3B30;
+}
+[data-theme="dark"] {
+  --bg: #000000; --surface1: #1D1D1F; --surface2: #3A3A3C;
+  --border: #3A3A3C; --border-visible: #48484A;
+  --text1: #F5F5F7; --text2: #8E8E93; --text3: #6E6E73; --text4: #48484A;
+  --accent: #2997FF; --accent-subtle: #001335;
+  --success: #30D158; --warning: #FF9F0A; --error: #FF3B30;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
+  background: var(--bg); color: var(--text1);
+  -webkit-font-smoothing: antialiased;
+}
+a { text-decoration: none; }
+
+/* ─── NAV ────────────────────────────────────────────────────────────────── */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.72);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  display: flex; align-items: center; justify-content: center;
+  height: 44px; gap: 32px;
+}
+[data-theme="dark"] .nav { background: rgba(0,0,0,0.72); border-bottom-color: rgba(255,255,255,0.08); }
+.nav-link { font-size: 12px; font-weight: 400; color: var(--text2); transition: color 150ms; }
+.nav-link:hover { color: var(--text1); }
+.nav-logo { font-size: 20px; }
+
+/* ─── SECTIONS ───────────────────────────────────────────────────────────── */
+.section { width: 100%; }
+
+/* ─── HERO ───────────────────────────────────────────────────────────────── */
+.hero {
+  background: #000000;
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 96px 24px;
+  position: relative; overflow: hidden;
+}
+.hero-eyebrow { font-size: 17px; font-weight: 400; color: rgba(255,255,255,0.7); margin-bottom: 16px; letter-spacing: 0; }
+.hero-headline {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+  font-size: clamp(52px, 8vw, 96px);
+  font-weight: 600; letter-spacing: -0.022em; line-height: 1.04;
+  color: #F5F5F7; margin-bottom: 24px; max-width: 900px;
+}
+.hero-sub { font-size: 21px; font-weight: 400; color: rgba(255,255,255,0.65); margin-bottom: 40px; max-width: 560px; line-height: 1.45; }
+.hero-ctas { display: flex; gap: 12px; align-items: center; justify-content: center; flex-wrap: wrap; }
+
+/* Photo placeholder */
+.hero-photo-placeholder {
+  margin-top: 64px; width: 100%; max-width: 800px;
+  aspect-ratio: 16/9; border-radius: 18px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 12px; color: rgba(255,255,255,0.3); font-size: 14px;
+}
+.hero-photo-placeholder i { font-size: 32px; }
+
+/* ─── BUTTONS ────────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 14px 24px; border-radius: 980px; border: none;
+  font-family: inherit; font-size: 17px; font-weight: 400;
+  cursor: pointer; text-decoration: none;
+  transition: opacity 150ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 100ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.btn:hover { opacity: 0.85; }
+.btn:active { transform: scale(0.97); }
+.btn-black { background: #000000; color: #FFFFFF; }
+.btn-white { background: #FFFFFF; color: #000000; }
+.btn-blue  { background: #0071E3; color: #FFFFFF; }
+.btn-outline-white { background: transparent; color: #FFFFFF; border: 1px solid rgba(255,255,255,0.55); }
+.link-cta { color: var(--accent); font-size: 17px; font-weight: 400; transition: opacity 150ms; }
+.link-cta:hover { opacity: 0.8; text-decoration: underline; }
+
+/* ─── FEATURE SECTIONS ───────────────────────────────────────────────────── */
+.feature {
+  background: var(--bg); padding: 120px 24px;
+  display: flex; align-items: center; justify-content: center;
+}
+.feature-inner {
+  max-width: 980px; width: 100%;
+  display: flex; align-items: center; gap: 80px;
+}
+.feature-inner.reverse { flex-direction: row-reverse; }
+.feature-text { flex: 1; }
+.feature-visual { flex: 1; min-width: 0; }
+.feature-label { font-size: 12px; font-weight: 500; letter-spacing: 0.010em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+.feature-heading {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+  font-size: clamp(28px, 3.5vw, 48px); font-weight: 600;
+  letter-spacing: -0.015em; line-height: 1.08;
+  color: var(--text1); margin-bottom: 20px;
+}
+.feature-body { font-size: 17px; font-weight: 400; color: var(--text2); line-height: 1.52; margin-bottom: 28px; }
+
+/* Feature visual blocks */
+.feature-card {
+  background: var(--surface1); border-radius: 18px; padding: 32px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.feature-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--accent-subtle); color: var(--accent);
+  padding: 6px 14px; border-radius: 980px; font-size: 13px; font-weight: 500;
+}
+.spec-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.spec-row:last-child { border-bottom: none; }
+.spec-label { font-size: 15px; color: var(--text2); }
+.spec-value { font-size: 15px; color: var(--text1); font-weight: 500; }
+
+/* ─── GRAY SECTION ───────────────────────────────────────────────────────── */
+.section-gray { background: var(--surface1); }
+
+/* ─── PULL QUOTE ─────────────────────────────────────────────────────────── */
+.pullquote {
+  background: #000; padding: 120px 24px;
+  text-align: center; display: flex; align-items: center; justify-content: center;
+}
+.pullquote-text {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+  font-size: clamp(24px, 3.5vw, 42px); font-weight: 600;
+  letter-spacing: -0.015em; line-height: 1.15;
+  color: #F5F5F7; max-width: 760px;
+}
+.pullquote-attr { font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 20px; }
+
+/* ─── FINAL CTA ──────────────────────────────────────────────────────────── */
+.final-cta {
+  background: var(--surface1); padding: 120px 24px;
+  text-align: center;
+}
+.final-cta-heading {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+  font-size: clamp(32px, 5vw, 64px); font-weight: 600;
+  letter-spacing: -0.020em; line-height: 1.06;
+  color: var(--text1); margin-bottom: 32px;
+}
+.final-cta-sub { font-size: 17px; color: var(--text2); margin-bottom: 40px; }
+
+/* ─── FOOTER ─────────────────────────────────────────────────────────────── */
+.footer {
+  background: var(--surface1); border-top: 1px solid var(--border);
+  padding: 32px 24px; text-align: center;
+}
+.footer-links { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+.footer-link { font-size: 12px; color: var(--text3); }
+.footer-copy { font-size: 12px; color: var(--text4); }
+
+/* ─── FLOATING BAR ───────────────────────────────────────────────────────── */
+.floating-bar {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+  z-index: 200; display: flex; align-items: center; gap: 4px;
+  background: rgba(255,255,255,0.85); backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(0,0,0,0.08); border-radius: 980px;
+  padding: 6px 8px; box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+[data-theme="dark"] .floating-bar { background: rgba(29,29,31,0.85); border-color: rgba(255,255,255,0.08); }
+.mode-btn {
+  display: flex; align-items: center; gap: 6px; background: none; border: none;
+  cursor: pointer; color: var(--text2); font-size: 13px; font-weight: 500;
+  padding: 7px 14px; border-radius: 980px;
+  transition: all 150ms; font-family: inherit;
+}
+.mode-btn:hover { color: var(--text1); background: var(--surface1); }
+.mode-btn.active { background: var(--text1); color: var(--bg); }
+
+@media (max-width: 768px) {
+  .feature-inner, .feature-inner.reverse { flex-direction: column; gap: 40px; }
+  .hero-headline { font-size: 42px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <span class="nav-logo">&#63743;</span>
+  <a href="#" class="nav-link" onclick="return false;">Mac</a>
+  <a href="#" class="nav-link" onclick="return false;">iPad</a>
+  <a href="#" class="nav-link" onclick="return false;">iPhone</a>
+  <a href="#" class="nav-link" onclick="return false;">Watch</a>
+  <a href="#" class="nav-link" onclick="return false;">AirPods</a>
+  <a href="#" class="nav-link" onclick="return false;">Support</a>
+</nav>
+
+<!-- HERO — dark section, product photography placeholder -->
+<section class="hero">
+  <p class="hero-eyebrow">Introducing</p>
+  <h1 class="hero-headline">MacBook Pro</h1>
+  <p class="hero-sub">Mind-blowing. Head-turning. The power to change everything you do.</p>
+  <div class="hero-ctas">
+    <a href="#" class="btn btn-white" onclick="return false;">Learn more</a>
+    <a href="#" class="btn btn-outline-white" onclick="return false;">Buy →</a>
+  </div>
+  <div class="hero-photo-placeholder">
+    <i class="ph-light ph-image"></i>
+    <span>Product photography — MacBook Pro Space Black<br>Replace with official Apple imagery before shipping</span>
+  </div>
+</section>
+
+<!-- FEATURE 1 — M4 chip, white section, text-left / visual-right -->
+<section class="feature section">
+  <div class="feature-inner">
+    <div class="feature-text">
+      <div class="feature-label">Performance</div>
+      <h2 class="feature-heading">M4 Pro.<br>Outrageously fast.</h2>
+      <p class="feature-body">The 14-core CPU in M4 Pro screams through the most demanding tasks — 3D rendering, ML training, compiling millions of lines of code. Up to 3.7× faster than the fastest Intel-based MacBook Pro.</p>
+      <a href="#" class="link-cta" onclick="return false;">Explore M4 Pro →</a>
+    </div>
+    <div class="feature-visual">
+      <div class="feature-card">
+        <div class="feature-chip"><i class="ph-light ph-lightning"></i> M4 Pro</div>
+        <div class="spec-row">
+          <span class="spec-label">CPU cores</span>
+          <span class="spec-value">14-core</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">GPU cores</span>
+          <span class="spec-value">20-core</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Neural Engine</span>
+          <span class="spec-value">38 TOPS</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Memory bandwidth</span>
+          <span class="spec-value">273 GB/s</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Unified Memory</span>
+          <span class="spec-value">Up to 96 GB</span>
+        </div>
+        <!-- Mini bar chart -->
+        <div style="display:flex;gap:4px;align-items:flex-end;margin-top:8px;">
+          <div style="flex:1;"><div style="background:var(--surface2);border-radius:4px;height:28px;display:flex;align-items:flex-end;overflow:hidden;"><div style="width:100%;height:32%;background:var(--text4);border-radius:4px;"></div></div><div style="font-size:9px;color:var(--text4);text-align:center;margin-top:4px;">Intel</div></div>
+          <div style="flex:1;"><div style="background:var(--surface2);border-radius:4px;height:28px;display:flex;align-items:flex-end;overflow:hidden;"><div style="width:100%;height:52%;background:var(--text3);border-radius:4px;"></div></div><div style="font-size:9px;color:var(--text4);text-align:center;margin-top:4px;">M1 Pro</div></div>
+          <div style="flex:1;"><div style="background:var(--surface2);border-radius:4px;height:28px;display:flex;align-items:flex-end;overflow:hidden;"><div style="width:100%;height:72%;background:var(--text2);border-radius:4px;"></div></div><div style="font-size:9px;color:var(--text4);text-align:center;margin-top:4px;">M3 Pro</div></div>
+          <div style="flex:1;"><div style="background:var(--surface2);border-radius:4px;height:28px;display:flex;align-items:flex-end;overflow:hidden;"><div style="width:100%;height:100%;background:var(--accent);border-radius:4px;"></div></div><div style="font-size:9px;color:var(--text4);text-align:center;margin-top:4px;">M4 Pro</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE 2 — Display, gray section, text-right / visual-left -->
+<section class="feature section section-gray">
+  <div class="feature-inner reverse">
+    <div class="feature-text">
+      <div class="feature-label">Display</div>
+      <h2 class="feature-heading">Liquid Retina XDR. See the difference.</h2>
+      <p class="feature-body">With extreme dynamic range and 1,000 nits of sustained brightness — 1,600 for HDR — every photo and video looks spectacular. ProMotion adapts the refresh rate up to 120Hz for silky motion.</p>
+      <a href="#" class="link-cta" onclick="return false;">Learn more about the display →</a>
+    </div>
+    <div class="feature-visual">
+      <div class="feature-card">
+        <div style="font-size:12px;font-weight:500;letter-spacing:0.010em;text-transform:uppercase;color:var(--text3);margin-bottom:12px;">Display Specs</div>
+        <div class="spec-row">
+          <span class="spec-label">Size</span>
+          <span class="spec-value">16.2-inch</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Resolution</span>
+          <span class="spec-value">3456 × 2234</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Brightness (sustained)</span>
+          <span class="spec-value">1,000 nits</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">HDR brightness</span>
+          <span class="spec-value">1,600 nits</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">ProMotion</span>
+          <span class="spec-value" style="color:var(--success);">Up to 120Hz</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">P3 wide color</span>
+          <span class="spec-value" style="display:flex;align-items:center;gap:6px;"><i class="ph-light ph-check-circle" style="color:var(--success);font-size:16px;"></i> Supported</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE 3 — Battery, white section, text-left / visual-right -->
+<section class="feature section">
+  <div class="feature-inner">
+    <div class="feature-text">
+      <div class="feature-label">Battery</div>
+      <h2 class="feature-heading">Up to 24 hours. A workday and then some.</h2>
+      <p class="feature-body">Do everything you need to do — and everything you want to do — all on a single charge. MacBook Pro gives you the longest battery life ever in a Mac.</p>
+      <a href="#" class="link-cta" onclick="return false;">See battery details →</a>
+    </div>
+    <div class="feature-visual">
+      <div class="feature-card" style="background:#000;color:#fff;">
+        <div style="font-size:12px;font-weight:500;letter-spacing:0.010em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:8px;">Battery Life</div>
+        <div style="font-family:-apple-system,'SF Pro Display','Inter',sans-serif;font-size:52px;font-weight:600;letter-spacing:-0.020em;color:#fff;line-height:1;">24 <span style="font-size:24px;font-weight:400;color:rgba(255,255,255,0.6);">hours</span></div>
+        <div style="font-size:14px;color:rgba(255,255,255,0.55);margin-top:8px;">Wireless web — longest battery life ever in a Mac.</div>
+        <!-- Battery visual -->
+        <div style="margin-top:20px;display:flex;gap:4px;align-items:center;">
+          <div style="flex:1;height:8px;border-radius:980px;background:rgba(255,255,255,0.15);overflow:hidden;">
+            <div style="height:100%;width:100%;background:rgba(48,209,88,0.9);border-radius:980px;"></div>
+          </div>
+          <span style="font-size:11px;color:rgba(255,255,255,0.45);flex-shrink:0;">100%</span>
+        </div>
+        <div style="margin-top:4px;display:flex;gap:4px;align-items:center;">
+          <div style="flex:1;height:8px;border-radius:980px;background:rgba(255,255,255,0.15);overflow:hidden;">
+            <div style="height:100%;width:58%;background:rgba(255,159,10,0.9);border-radius:980px;"></div>
+          </div>
+          <span style="font-size:11px;color:rgba(255,255,255,0.45);flex-shrink:0;">M3 Pro 18h</span>
+        </div>
+        <div style="margin-top:4px;display:flex;gap:4px;align-items:center;">
+          <div style="flex:1;height:8px;border-radius:980px;background:rgba(255,255,255,0.15);overflow:hidden;">
+            <div style="height:100%;width:33%;background:rgba(255,255,255,0.4);border-radius:980px;"></div>
+          </div>
+          <span style="font-size:11px;color:rgba(255,255,255,0.45);flex-shrink:0;">Intel 8h</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PULL QUOTE -->
+<section class="pullquote">
+  <div>
+    <p class="pullquote-text">"The most personal computer has always been the one in your pocket. Now it's the one on your desk, with a chip that thinks like you do."</p>
+    <p class="pullquote-attr">— Craig Federighi, Apple SVP Software Engineering</p>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <h2 class="final-cta-heading">MacBook Pro.<br>From $1,999.</h2>
+  <p class="final-cta-sub">14-inch and 16-inch models with M4 Pro and M4 Max chip.</p>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+    <a href="#" class="btn btn-blue" onclick="return false;">Buy</a>
+    <a href="#" class="link-cta" style="display:flex;align-items:center;" onclick="return false;">Learn more →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-links">
+    <a href="#" class="footer-link" onclick="return false;">Privacy Policy</a>
+    <a href="#" class="footer-link" onclick="return false;">Terms of Use</a>
+    <a href="#" class="footer-link" onclick="return false;">Sales and Refunds</a>
+    <a href="#" class="footer-link" onclick="return false;">Legal</a>
+    <a href="#" class="footer-link" onclick="return false;">Site Map</a>
+  </div>
+  <p class="footer-copy">Copyright © 2026 Apple Inc. All rights reserved.</p>
+</footer>
+
+<!-- FLOATING BAR -->
+<div class="floating-bar">
+  <button class="mode-btn active" data-mode="light"><i class="ph-light ph-sun"></i> Light</button>
+  <button class="mode-btn" data-mode="dark"><i class="ph-light ph-moon"></i> Dark</button>
+</div>
+
+<script>
+const html = document.documentElement;
+document.querySelectorAll('.mode-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    html.setAttribute('data-theme', btn.dataset.mode);
+    document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b === btn));
+  });
+});
+</script>
+</body>
+</html>
