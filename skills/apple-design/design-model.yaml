@@ -1,0 +1,288 @@
+name: "apple-design"
+philosophy: "Monumental typography on an invisible canvas. Product supremacy through restraint — the UI exists only to surface the product and disappear. Scale versus restraint is the defining tension: 80px display headlines live beside 17px body copy with nothing in between. The chromatic world is binary: one touch of Apple Blue for all interactivity, everything else neutral or absolute black and white. White sections dissolve into black Pro-product sections as if the product itself controls the atmosphere."
+primary_mode: "light"
+brand_domain: "consumer electronics / premium hardware and software"
+brand_type: "content-rich"
+mono_for_code: false
+mono_for_metrics: false
+
+# ── PRIMITIVES ── Apple's cool-neutral gray ramp and system blue
+primitives:
+  colors:
+    neutral:
+      50:  "#FFFFFF"
+      100: "#F5F5F7"
+      200: "#E8E8ED"
+      300: "#D2D2D7"
+      400: "#AEAEB2"
+      500: "#8E8E93"
+      600: "#6E6E73"
+      700: "#48484A"
+      800: "#3A3A3C"
+      900: "#1D1D1F"
+      950: "#000000"
+    brand:
+      50:  "#EBF3FF"
+      100: "#D1E6FF"
+      200: "#A3CDFF"
+      300: "#75B3FF"
+      400: "#2997FF"
+      500: "#0071E3"
+      600: "#0064CA"
+      700: "#004F9F"
+      800: "#003B75"
+      900: "#002754"
+      950: "#001335"
+    red:   { 50: "#FFF0EF", 500: "#FF3B30", 900: "#5C0A08" }
+    green: { 50: "#F0FDF5", 500: "#30D158", 900: "#0A3D1E" }
+    amber: { 50: "#FFF6EC", 500: "#FF9F0A", 900: "#5C3507" }
+  spacing: [0, 2, 4, 8, 12, 16, 24, 32, 48, 64, 96]
+  radii: [0, 8, 12, 18, 20, 980]
+
+# ── SEMANTIC TOKENS ──
+tokens:
+  colors:
+    light:
+      background: "{neutral.50}"
+      surface1: "{neutral.100}"
+      surface2: "{neutral.200}"
+      surface3: "{neutral.300}"
+      border: "{neutral.200}"
+      border_visible: "{neutral.300}"
+      text1: "{neutral.900}"
+      text2: "{neutral.600}"
+      text3: "{neutral.500}"
+      text4: "{neutral.400}"
+      accent: "{brand.500}"
+      accent_subtle: "{brand.50}"
+    dark:
+      background: "{neutral.950}"
+      surface1: "{neutral.900}"
+      surface2: "{neutral.800}"
+      surface3: "{neutral.700}"
+      border: "{neutral.800}"
+      border_visible: "{neutral.700}"
+      text1: "{neutral.100}"
+      text2: "{neutral.500}"
+      text3: "{neutral.600}"
+      text4: "{neutral.700}"
+      accent: "{brand.400}"
+      accent_subtle: "{brand.950}"
+    success: "{green.500}"
+    warning: "{amber.500}"
+    error: "{red.500}"
+    success_bg_light: "{green.50}"
+    warning_bg_light: "{amber.50}"
+    error_bg_light: "{red.50}"
+    success_bg_dark: "#082B14"
+    warning_bg_dark: "#2B1800"
+    error_bg_dark: "#2B0806"
+
+  spacing:
+    2xs: 2
+    xs: 4
+    sm: 8
+    md: 16
+    lg: 24
+    xl: 32
+    2xl: 48
+    3xl: 64
+    4xl: 96
+
+  radii:
+    element: 8      # small controls, badges
+    control: 980    # buttons — always pill
+    input: 12       # text fields, search bars
+    component: 18   # cards, panels
+    container: 20   # modals, sheets
+    pill: 980
+
+  typography:
+    display:    { family: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter'", size: "80px", weight: 600, line_height: 1.05, letter_spacing: "-0.022em" }
+    heading:    { family: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter'", size: "48px", weight: 600, line_height: 1.08, letter_spacing: "-0.015em" }
+    subheading: { family: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter'", size: "28px", weight: 600, line_height: 1.15, letter_spacing: "-0.010em" }
+    body:       { family: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter'",    size: "17px", weight: 400, line_height: 1.52, letter_spacing: "0em" }
+    body_sm:    { family: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter'",    size: "14px", weight: 400, line_height: 1.5,  letter_spacing: "0em" }
+    caption:    { family: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter'",    size: "12px", weight: 400, line_height: 1.4,  letter_spacing: "0.005em" }
+    label:      { family: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter'",    size: "12px", weight: 500, line_height: 1.3,  letter_spacing: "0.010em" }
+    mono:       { family: "'SF Mono', 'JetBrains Mono', 'Fira Code', monospace",          size: "13px", weight: 400, line_height: 1.45, letter_spacing: "0em" }
+
+  elevation:
+    strategy: "flat"
+    glass_strategy: "backdrop-filter: blur(20px) saturate(180%)"
+    shadow_1_light: "0 2px 8px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.06)"
+    shadow_1_dark:  "0 2px 8px rgba(0,0,0,0.30), 0 1px 2px rgba(0,0,0,0.40)"
+    shadow_2_light: "0 8px 30px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.05)"
+    shadow_2_dark:  "0 8px 30px rgba(0,0,0,0.50), 0 2px 8px rgba(0,0,0,0.40)"
+    shadow_3_light: "0 20px 60px rgba(0,0,0,0.12), 0 8px 24px rgba(0,0,0,0.08)"
+    shadow_3_dark:  "0 20px 60px rgba(0,0,0,0.70), 0 8px 24px rgba(0,0,0,0.50)"
+
+  motion:
+    personality: "smooth"
+    easing: "cubic-bezier(0.25, 0.46, 0.45, 0.94)"
+    easing_fast: "cubic-bezier(0.25, 0.46, 0.45, 0.94)"
+    easing_medium: "cubic-bezier(0.25, 0.46, 0.45, 0.94)"
+    easing_slow: "cubic-bezier(0.28, 0.44, 0.49, 0.96)"
+    duration_fast: "150ms"
+    duration_normal: "300ms"
+    duration_slow: "500ms"
+
+  hero_stage:
+    preset: "editorial-photo"
+    observed_style:
+      description: "Full-bleed product photography on alternating pure white and absolute black backgrounds. Each section is its own atmospheric world. Pro product sections (iPhone Pro, MacBook Pro) use deep black with the product centered. Standard sections use white with the product floating. The hero subject IS the photography — there are no decorative elements. Text floats above the photograph in large SF Pro Display, white on dark, near-black on white. Two CTAs appear beneath: a text-link 'Learn more' and an optional pill-button 'Shop'."
+      where_used: ["hero", "every major section"]
+      notes: "Apple's page is a sequence of full-bleed sections, each with its own background. The 'hero' is a product. This cannot be CSS-simulated — it requires product photography. We approximate with a dark-gradient stage and a labeled photo-cutout placeholder."
+    background:
+      medium: "gradient"
+      color_mode: "monochrome"
+      saturation: "flat"
+      light_source: "center"
+      falloff: "radial"
+      vignette: "subtle"
+      texture: "clean"
+      motion: "static"
+      intensity: "subtle"
+      safe_zone: "masked-for-text"
+      color_palette: ["#000000", "#0A0A0A", "#111111", "#1D1D1F"]
+    hero:
+      subject: "photo-cutout"
+      placement: "center"
+      scale: "dominant"
+      tint: "neutral"
+    relation:
+      type: "flat"
+      bleed: 0
+    disclaimer: "Apple's hero sections use commissioned product photography. The preview renders a dark-gradient stage with a labeled placeholder. Replace with official Apple product imagery (subject to Apple's usage policies) before shipping."
+
+  iconography:
+    observed_style:
+      description: "SF Symbols — Apple's proprietary system icon set. Thin-to-regular stroke (~1px–1.5px), perfectly rounded terminals, monoline-geometric with high consistency. Icons exist in nine weights and three scales. The outline style dominates on marketing pages; filled variants appear in UI contexts."
+      stroke_weight: "regular (~1.5px), thin in some contexts"
+      corner_treatment: "fully-round"
+      fill_style: "outline / filled (contextual)"
+      form_language: "strict-geometric"
+      visual_density: "minimal"
+    fallback_kit:
+      name: "Phosphor"
+      weight: "light"
+      match_score: "medium"
+      match_reasoning: "Phosphor light (~1.25px) comes closest to SF Symbols' minimal stroke weight and rounded terminals. The humanist warmth of Phosphor is a slight mismatch — SF Symbols are purely geometric — but no kit in the pool is strictly geometric with rounded terminals at this delicacy. Lucide (2px, geometric) is second choice but too heavy. Phosphor light at 16px reads cleanest for Apple's icon density."
+      cdn: "https://unpkg.com/@phosphor-icons/web@2/src/light/style.css"
+      icon_class_prefix: "ph-light ph-"
+    disclaimer: "Icons in the generated preview are a best-match fallback from the Phosphor kit (light weight). Apple's actual SF Symbols are proprietary and not redistributed with this skill. In production, use SF Symbols on Apple platforms or license-appropriate alternatives on web."
+
+components:
+  button_primary:
+    source: "observed"
+    description: "Pill-shaped CTA — Apple's signature button. Never rectangular. Black on light sections, white on dark sections."
+    background: "{neutral.950}"
+    color: "#FFFFFF"
+    padding: "14px 24px"
+    radius: "{radii.control}"
+    font_size: "17px"
+    font_weight: 400
+    letter_spacing: "0em"
+    hover: { background: "{neutral.900}", opacity: 0.9 }
+    dark_variant: { background: "#FFFFFF", color: "{neutral.950}" }
+
+  button_secondary:
+    source: "observed"
+    description: "Blue pill button — used for primary store/purchase actions."
+    background: "{brand.500}"
+    color: "#FFFFFF"
+    padding: "14px 24px"
+    radius: "{radii.control}"
+    font_size: "17px"
+    font_weight: 400
+    hover: { background: "{brand.600}" }
+
+  button_text_link:
+    source: "observed"
+    description: "'Learn more →' style — blue text, no background, small arrow glyph."
+    background: "transparent"
+    color: "{brand.500}"
+    font_size: "17px"
+    font_weight: 400
+    arrow: true
+    dark_variant: { color: "{brand.400}" }
+
+  button_outline:
+    source: "derived"
+    description: "White outline on dark sections. Rare — appears on some dark-hero sections."
+    background: "transparent"
+    color: "#FFFFFF"
+    border: "1px solid rgba(255,255,255,0.6)"
+    padding: "14px 24px"
+    radius: "{radii.control}"
+    font_size: "17px"
+    font_weight: 400
+    justified_by: "Principle 3 (binary palette) + Principle 5 (pill always). White outline is the ghost variant for dark surfaces where the filled white button would be too heavy."
+
+  card_product:
+    source: "observed"
+    description: "Large product showcase card — fills a section column. No border, no shadow."
+    background: "{neutral.100}"
+    radius: "{radii.component}"
+    padding: "48px"
+    border: "none"
+    shadow: "none"
+    hover: { transform: "none" }
+    note: "Background shifts to white, black, or brand color per product — cards are section-colored, not surface-colored."
+
+  card_feature:
+    source: "derived"
+    description: "Smaller feature card inside a grid. Very subtle shadow, no border."
+    background: "{neutral.50}"
+    radius: "{radii.component}"
+    padding: "32px"
+    border: "none"
+    shadow: "{shadow_1_light}"
+    justified_by: "Principle 2 (whitespace) + Principle 4 (flat depth). Shadow only exists to distinguish from the section background — it's the minimum necessary depth signal."
+
+  input_text:
+    source: "derived"
+    description: "Search bar / text input. No Apple-specific web component observed — derived from HIG."
+    background: "{neutral.100}"
+    border: "1px solid {neutral.300}"
+    focus_border: "2px solid {brand.500}"
+    radius: "{radii.input}"
+    padding: "10px 14px"
+    font_size: "17px"
+    placeholder_color: "{neutral.500}"
+    justified_by: "Principle 1 (invisible UI). Inputs sit on light gray, 12px radius, no dramatic styling. The focus ring uses brand blue — the only moment of color."
+
+  nav_global:
+    source: "observed"
+    description: "Top navigation bar — translucent glass, horizontal pill tabs."
+    background: "rgba(255,255,255,0.72)"
+    backdrop_filter: "blur(20px) saturate(180%)"
+    border_bottom: "1px solid rgba(0,0,0,0.08)"
+    height: "44px"
+    font_size: "12px"
+    font_weight: 400
+    letter_spacing: "0em"
+    dark_variant: { background: "rgba(0,0,0,0.72)", border_bottom: "1px solid rgba(255,255,255,0.10)" }
+
+  tag_status:
+    source: "derived"
+    description: "Status tag — minimal. Used in spec tables, availability labels."
+    radius: "{radii.element}"
+    padding: "4px 10px"
+    font_size: "12px"
+    font_weight: 500
+    justified_by: "Principle 6 (no pill-brand contamination on secondary elements). Tags use rect-radius, not pill."
+
+app_screen:
+  archetype: "list-detail"
+  frame: "browser"
+  frame_params:
+    url: "apple.com/shop/buy-mac/macbook-pro"
+    title: "MacBook Pro — Apple"
+  content_seed: "MacBook Pro configurator — 14-inch and 16-inch models, M4 chip variants, storage and memory options"
+  required_tokens_checklist:
+    - "background, surface1, surface2, surface3, border, border_visible"
+    - "text1, text2, text3, text4"
+    - "accent, accent_subtle, success, warning, error"
+    - "all typography scale tokens"
+    - "all spacing tokens used in components"

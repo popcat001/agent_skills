@@ -1,0 +1,53 @@
+@startuml
+!theme plain
+skinparam backgroundColor white
+skinparam sequenceMessageAlign center
+skinparam participantPadding 20
+skinparam boxPadding 10
+
+title Sequence Diagram Title
+
+actor "User" as user
+participant "Client" as client
+participant "Service" as service
+database "Database" as db
+queue "Queue" as queue
+
+' Basic interaction
+user -> client: Initiate request
+activate client
+
+client -> service: API call()
+activate service
+
+' Parallel operations
+par Parallel Block
+    service -> db: Query data
+    activate db
+    db --> service: Result
+    deactivate db
+else
+    service -> queue: Send message
+    activate queue
+    queue --> service: Ack
+    deactivate queue
+end
+
+' Conditional logic
+alt Success case
+    service --> client: Success response
+else Error case
+    service --> client: Error response
+    client -> service: Retry()
+end
+
+deactivate service
+client --> user: Display result
+deactivate client
+
+note over user, db
+    This is a multi-participant note.
+    Use for important explanations.
+end note
+
+@enduml

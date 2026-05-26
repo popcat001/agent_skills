@@ -1,0 +1,101 @@
+<h1>Page Title</h1>
+
+<ac:structured-macro ac:name="info" ac:schema-version="1">
+  <ac:rich-text-body>
+    <p><strong>Status:</strong> Draft | <strong>Author:</strong> Your Name | <strong>Created:</strong> YYYY-MM-DD</p>
+  </ac:rich-text-body>
+</ac:structured-macro>
+
+<ac:structured-macro ac:name="toc" ac:schema-version="1">
+  <ac:parameter ac:name="maxLevel">3</ac:parameter>
+  <ac:parameter ac:name="minLevel">2</ac:parameter>
+</ac:structured-macro>
+
+<h2>Overview</h2>
+<p>High-level summary of what this document covers. Keep it concise (2-3 paragraphs).</p>
+
+<h2>Problem Statement</h2>
+<p>What problem does this solve? Why is this important?</p>
+
+<h2>Architecture</h2>
+<p>Technical design and architecture overview.</p>
+
+<h3>System Architecture</h3>
+<p>Description of architecture diagram below:</p>
+
+<ac:structured-macro ac:name="inc-drawio" ac:schema-version="1">
+  <ac:parameter ac:name="diagramName">Architecture-Diagram</ac:parameter>
+  <ac:parameter ac:name="includedDiagram">1</ac:parameter>
+  <ac:parameter ac:name="width">800</ac:parameter>
+  <ac:parameter ac:name="pageId">PAGE_ID</ac:parameter>
+  <ac:parameter ac:name="" />
+</ac:structured-macro>
+
+<h3>Sequence Flow</h3>
+<p>Description of sequence diagram below:</p>
+
+<ac:structured-macro ac:name="plantuml" ac:schema-version="1">
+  <ac:parameter ac:name="atlassian-macro-output-type">INLINE</ac:parameter>
+  <ac:plain-text-body><![CDATA[@startuml
+!theme plain
+skinparam backgroundColor white
+
+title Sequence Diagram Title
+
+participant "Client" as client
+participant "Service" as service
+
+client -> service: request()
+activate service
+service --> client: response()
+deactivate service
+
+@enduml]]></ac:plain-text-body>
+</ac:structured-macro>
+
+<h2>Implementation Details</h2>
+<p>Key implementation patterns and decisions. Keep code examples to 5 lines or less.</p>
+
+<ac:structured-macro ac:name="code" ac:schema-version="1">
+  <ac:parameter ac:name="language">typescript</ac:parameter>
+  <ac:plain-text-body><![CDATA[
+// Example interface or pattern (5 lines max)
+interface Example {
+  method(): Promise<Result>;
+}
+]]></ac:plain-text-body>
+</ac:structured-macro>
+
+<h2>Testing</h2>
+<p>Testing strategy and key test locations.</p>
+
+<ul>
+  <li><strong>Unit tests:</strong> <code>src/__tests__/unit/</code></li>
+  <li><strong>Integration tests:</strong> <code>src/__tests__/integration/</code></li>
+</ul>
+
+<h2>Key Files</h2>
+<table class="wrapped">
+  <thead>
+    <tr>
+      <th>File Path</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>src/service/main.ts</code></td>
+      <td>Main service implementation</td>
+    </tr>
+    <tr>
+      <td><code>src/config/settings.ts</code></td>
+      <td>Configuration</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Related Links</h2>
+<ul>
+  <li><a href="https://jira.corp.adobe.com/browse/GS-XXXXX">GS-XXXXX: Related Jira Ticket</a></li>
+  <li><a href="/pages/viewpage.action?pageId=12345">Related Wiki Page</a></li>
+</ul>
