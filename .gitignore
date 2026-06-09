@@ -1,1 +1,4 @@
 .chat/
+*.pyc
+__pycache__/
+skills/.system/
