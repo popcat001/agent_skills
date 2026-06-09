@@ -46,6 +46,7 @@ Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes, sim
 - For Office documents (.docx, .xlsx, .pptx): prefer the `officecli` skill over `document-skills:pptx`, `document-skills:docx`, and `document-skills:xlsx`. OfficeCLI is a single binary with no dependencies — faster and more capable.
 - Always use the `frontend-design` skill when designing or redesigning UI components, pages, or layouts.
 - Always use `uv add <package>` to install Python packages — never `uv pip install`. `uv add` records the package in `pyproject.toml` and updates `uv.lock`; `uv pip install` only installs into the venv without updating the project manifest.
+- For GitHub CLI operations, first check auth with escalated `gh auth status` because sandboxed `gh` may not see the macOS keyring. Do not retry browser/device auth just because sandboxed auth fails.
 
 ## Multi-Agent Team Coordination (MIXED CLAUDE/CODEX TEAMS ONLY)
 Applies only when a team includes a Codex subagent (via `codex:codex-rescue`). Ignore for all-Claude teams, where SendMessage, TaskUpdate, and the normal team mailbox work as designed.

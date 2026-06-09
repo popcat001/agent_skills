@@ -1,14 +1,1 @@
-# Chat logs — may contain sensitive prompts
 .chat/
-
-# macOS metadata
-.DS_Store
-**/.DS_Store
-
-# Lock files with internal registry metadata
-.skill-lock.json
-
-# Python cache
-__pycache__/
-*.pyc
-*.pyo

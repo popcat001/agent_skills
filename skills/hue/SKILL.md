@@ -1,13 +1,13 @@
 ---
 name: hue
-description: "Meta-skill that generates new design language skills. Works on Claude Code and Codex. Use when the user says 'create a design skill', 'generate design language', 'new design system skill', 'design skill inspired by X', 'design skill from this screenshot', '/hue', or 'use hue'. Also triggers for 'remix my design skill' or 'make my skill more X'."
+description: "Meta-skill that generates new design language skills. Works on Codex and Codex. Use when the user says 'create a design skill', 'generate design language', 'new design system skill', 'design skill inspired by X', 'design skill from this screenshot', '/hue', or 'use hue'. Also triggers for 'remix my design skill' or 'make my skill more X'."
 version: 1.1.0
 allowed-tools: [Read, Write, Edit, Glob, Grep, WebFetch, WebSearch]
 ---
 
 # Design Skill Generator
 
-You are a senior product designer who creates design language specifications for AI coding assistants (Claude Code, Codex, and compatible tools). You don't design interfaces — you design the *system* that designs interfaces. Every skill you generate must be opinionated enough that two different sessions using it would produce visually indistinguishable output.
+You are a senior product designer who creates design language specifications for AI coding assistants (Codex, Codex, and compatible tools). You don't design interfaces — you design the *system* that designs interfaces. Every skill you generate must be opinionated enough that two different sessions using it would produce visually indistinguishable output.
 
 Your reference material lives in `references/`. Use it.
 
@@ -15,7 +15,7 @@ Your reference material lives in `references/`. Use it.
 
 This skill runs on multiple AI coding assistants. Use whichever tool exists in your session — prefer the left column when available.
 
-| Capability | Claude Code | Codex / other |
+| Capability | Codex | Codex / other |
 |---|---|---|
 | Read file | `Read` | shell: `cat -n`, `sed -n` |
 | Write new file | `Write` | `apply_patch` or shell |
@@ -519,7 +519,7 @@ Read the `design-model.yaml` and generate all 4 files. Fill every placeholder. N
 
 ### Phase 9: Write Files
 Default location depends on the platform:
-- **Claude Code:** `~/.claude/skills/{skill-name}-design/`
+- **Codex:** `~/.Codex/skills/{skill-name}-design/`
 - **Codex:** `~/.agents/skills/{skill-name}-design/`
 - If the user specifies a different path, use that.
 
@@ -630,7 +630,7 @@ After writing, tell the user what was created and ask if they want adjustments. 
 
 ### Phase 16: Installation Reminder
 After generating, tell the user:
-> Restart your AI coding assistant (Claude Code, Codex, etc.) or start a new conversation for the skill to be detected. Activate it by saying "{skill-name} design" or "/{skill-name}-design".
+> Restart your AI coding assistant (Codex, Codex, etc.) or start a new conversation for the skill to be detected. Activate it by saying "{skill-name} design" or "/{skill-name}-design".
 
 ---
 
@@ -696,7 +696,7 @@ These are non-negotiable. Every generated skill must meet all of them.
 - **Google Fonts only** for web skills. Name the exact font and weights needed.
 - **System fonts** for SwiftUI skills (SF Pro, SF Rounded, SF Mono, New York).
 - Include fallback stacks. Always.
-- State *why* the font fits the aesthetic. "Geometric sans with humanist details" tells Claude how to judge edge cases.
+- State *why* the font fits the aesthetic. "Geometric sans with humanist details" tells Codex how to judge edge cases.
 - **`mono_for_code` + `mono_for_metrics`:** Two independent flags decide where the mono font applies. `mono_for_code` covers code blocks, file paths, shell commands, inline technical tokens. `mono_for_metrics` covers pricing, counts, timestamps, percentages, ID strings. Many brands use mono for code but NOT for metrics (e.g. Cursor: mono inside IDE screenshots, but `$20` pricing stays in the sans). Decide each flag by checking the brand's actual site.
 
   | Brand type | Example | `mono_for_code` | `mono_for_metrics` |
@@ -784,7 +784,7 @@ allowed-tools: [Read, Write, Edit, Glob, Grep]
 
 The description must include the explicit trigger phrases. Never allow automatic triggering for generic design tasks.
 
-**Cross-platform note:** `allowed-tools` is a Claude Code field. Codex ignores it but tolerates its presence. Both platforms use `name` and `description` for skill discovery. Keep all fields for maximum compatibility.
+**Cross-platform note:** `allowed-tools` is a Codex field. Codex ignores it but tolerates its presence. Both platforms use `name` and `description` for skill discovery. Keep all fields for maximum compatibility.
 
 ---
 

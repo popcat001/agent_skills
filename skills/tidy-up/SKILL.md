@@ -1,12 +1,12 @@
 ---
 name: tidy-up
-description: "Reconcile memory and docs after a long Claude Code session. Use ONLY when the user explicitly invokes it via `/tidy`, `run tidy-up`, or a phrase like \"clean up docs and memory before I stop\". NEVER auto-trigger on casual phrases like \"tidy\", \"clean up\", \"sync\", or \"wrap up\" — this skill makes targeted edits to persistent state and requires explicit invocation."
+description: "Reconcile memory and docs after a long Codex session. Use ONLY when the user explicitly invokes it via `/tidy`, `run tidy-up`, or a phrase like \"clean up docs and memory before I stop\". NEVER auto-trigger on casual phrases like \"tidy\", \"clean up\", \"sync\", or \"wrap up\" — this skill makes targeted edits to persistent state and requires explicit invocation."
 allowed-tools: [Read, Write, Edit, Glob, Grep, Bash]
 ---
 
 # tidy-up
 
-Reconciles three layers of persistent state after a working session so they stop drifting from the code: (1) **memory** — the silent layer at `~/.claude/memory/` and `~/.claude/projects/<encoded-cwd>/memory/` (MEMORY.md + typed `user_*`, `feedback_*`, `project_*`, `reference_*` files); (2) **project root** — visible repo files like `CLAUDE.md` and `AGENTS.md`; (3) **external docs** — `README.md`, `docs/`, anything humans read. Concept credit: the public `neat-freak` skill. This skill is a stricter, dry-run-first reimplementation. It does not auto-execute, does not enumerate the whole tree, and has a strong bias toward keeping content rather than deleting it.
+Reconciles three layers of persistent state after a working session so they stop drifting from the code: (1) **memory** — the silent layer at `~/.Codex/memory/` and `~/.Codex/projects/<encoded-cwd>/memory/` (MEMORY.md + typed `user_*`, `feedback_*`, `project_*`, `reference_*` files); (2) **project root** — visible repo files like `AGENTS.md` and `AGENTS.md`; (3) **external docs** — `README.md`, `docs/`, anything humans read. Concept credit: the public `neat-freak` skill. This skill is a stricter, dry-run-first reimplementation. It does not auto-execute, does not enumerate the whole tree, and has a strong bias toward keeping content rather than deleting it.
 
 ## When to invoke
 
@@ -44,8 +44,8 @@ Output the plan, then stop. Wait for user approval. The user may approve all, ap
 
 Execute only the approved memory edits. Targets:
 
-- `~/.claude/memory/` — global user memory (cross-project preferences, workflow rules).
-- `~/.claude/projects/<encoded-cwd>/memory/` — project memory. The encoded directory replaces `/` with `-`, so `/Users/foo/bar` → `-Users-foo-bar`. Pick the directory that matches the current project's cwd; if multiple plausible candidates exist, ask.
+- `~/.Codex/memory/` — global user memory (cross-project preferences, workflow rules).
+- `~/.Codex/projects/<encoded-cwd>/memory/` — project memory. The encoded directory replaces `/` with `-`, so `/Users/foo/bar` → `-Users-foo-bar`. Pick the directory that matches the current project's cwd; if multiple plausible candidates exist, ask.
 
 Inside each memory dir, edit the typed files (`MEMORY.md`, `user_*.md`, `feedback_*.md`, `project_*.md`, `reference_*.md`) directly. These are silent — no git trace — so do not bundle them with doc edits, and do not include them in any git staging or commit you make for the doc pass. After edits, re-read each touched file once and verify the `Why:` / `How to apply:` lines are still intact; if any were dropped, restore them.
 
@@ -55,7 +55,7 @@ Re-show the **Doc pass** section of the plan. Memory edits may have changed your
 
 ### Phase 5 — Doc pass (visible layer)
 
-Execute only the reconfirmed doc edits. Targets in priority order: `CLAUDE.md` / `AGENTS.md` at the project root, then `README.md`, then files under `docs/`. Edits are visible in `git diff` — leave them unstaged unless the user asks you to stage or commit. Report a summary at the end: file paths touched, count of UPDATE/ADD/DELETE per pass, anything left in REVIEW that the user should look at later.
+Execute only the reconfirmed doc edits. Targets in priority order: `AGENTS.md` / `AGENTS.md` at the project root, then `README.md`, then files under `docs/`. Edits are visible in `git diff` — leave them unstaged unless the user asks you to stage or commit. Report a summary at the end: file paths touched, count of UPDATE/ADD/DELETE per pass, anything left in REVIEW that the user should look at later.
 
 ## Hard rules
 
