@@ -43,7 +43,7 @@ Before implementing:
 Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes, simplify.
 
 ## HTML Slides
-- Every HTML slide deck you generate must include an inline edit capability so the user can edit slide text directly in the browser. Add a labeled toggle switch fixed in the upper-right corner; clicking it (or pressing `E`) flips text blocks (headings, paragraphs, list items, table cells, labels) to `contenteditable` with a visible outline, and `⌘S`/`Ctrl+S` saves the edited HTML by downloading it. Hide the switch in print/PDF export (`@media print`).
+- Every HTML slide deck you generate must include an inline edit capability — a toggle switch in the upper-right corner that lets the user edit slide text directly in the browser and save the result.
 
 ## Tool Preferences
 - For Office documents (.docx, .xlsx, .pptx): prefer the `officecli` skill over `document-skills:pptx`, `document-skills:docx`, and `document-skills:xlsx`. OfficeCLI is a single binary with no dependencies — faster and more capable.
