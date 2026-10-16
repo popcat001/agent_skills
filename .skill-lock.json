@@ -18,6 +18,78 @@
       "skillFolderHash": "91d5f18b9b63ba358565b64acc915c7a080e81ba",
       "installedAt": "2026-05-26T07:49:57.152Z",
       "updatedAt": "2026-05-26T07:49:57.152Z"
+    },
+    "archify": {
+      "source": "tt-a1i/archify",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/tt-a1i/archify.git",
+      "skillPath": "archify/SKILL.md",
+      "skillFolderHash": "865e92843c5b1e820de61cd382560f208a7a3513",
+      "installedAt": "2026-09-15T05:35:13.043Z",
+      "updatedAt": "2026-09-15T05:35:13.043Z"
+    },
+    "guizang-product-video-skill": {
+      "source": "op7418/guizang-product-video-skill",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/op7418/guizang-product-video-skill.git",
+      "skillPath": "SKILL.md",
+      "skillFolderHash": "d6ddf740c444f5e3a6773c3446f06d717fcd0877",
+      "installedAt": "2026-10-01T01:33:43.870Z",
+      "updatedAt": "2026-10-01T01:33:43.870Z"
+    },
+    "design-taste-frontend": {
+      "source": "Leonxlnx/taste-skill",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/Leonxlnx/taste-skill.git",
+      "skillPath": "skills/taste-skill/SKILL.md",
+      "skillFolderHash": "a6d128e53b4ec0238baee751dde33bf707adb5ec",
+      "installedAt": "2026-10-01T20:12:26.469Z",
+      "updatedAt": "2026-10-01T20:12:26.469Z"
+    },
+    "minimalist-ui": {
+      "source": "Leonxlnx/taste-skill",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/Leonxlnx/taste-skill.git",
+      "skillPath": "skills/minimalist-skill/SKILL.md",
+      "skillFolderHash": "5509c012862cda27e2ed7efae89ed940ecc53add",
+      "installedAt": "2026-10-01T20:12:26.471Z",
+      "updatedAt": "2026-10-01T20:12:26.471Z"
+    },
+    "redesign-existing-projects": {
+      "source": "Leonxlnx/taste-skill",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/Leonxlnx/taste-skill.git",
+      "skillPath": "skills/redesign-skill/SKILL.md",
+      "skillFolderHash": "d9cffe56d26d4af7687299e391a7be1cfaf46c1b",
+      "installedAt": "2026-10-01T20:12:26.471Z",
+      "updatedAt": "2026-10-01T20:12:26.471Z"
+    },
+    "high-end-visual-design": {
+      "source": "Leonxlnx/taste-skill",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/Leonxlnx/taste-skill.git",
+      "skillPath": "skills/soft-skill/SKILL.md",
+      "skillFolderHash": "1b5943432ddd1b980206968c529a323cc992dbec",
+      "installedAt": "2026-10-01T20:12:26.472Z",
+      "updatedAt": "2026-10-01T20:12:26.472Z"
+    },
+    "herdr": {
+      "source": "herdrdev/herdr",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/herdrdev/herdr.git",
+      "skillPath": "skills/herdr/SKILL.md",
+      "skillFolderHash": "2be0d86d481d1bb29c62e11ef37b78d27d01b478",
+      "installedAt": "2026-10-14T20:24:03.795Z",
+      "updatedAt": "2026-10-14T20:24:03.795Z"
+    },
+    "lavish": {
+      "source": "kunchenguid/lavish-axi",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/kunchenguid/lavish-axi.git",
+      "skillPath": "skills/lavish/SKILL.md",
+      "skillFolderHash": "680ba3c9c9480ae13b515ccf0ad2837957ba10e8",
+      "installedAt": "2026-10-15T00:57:09.740Z",
+      "updatedAt": "2026-10-15T00:57:09.740Z"
     }
   },
   "dismissed": {
@@ -25,17 +97,17 @@
   },
   "lastSelectedAgents": [
     "amp",
-    "antigravity",
     "cline",
     "codex",
     "cursor",
-    "deepagents",
-    "dexto",
-    "firebender",
+    "droid",
     "gemini-cli",
     "github-copilot",
-    "kimi-cli",
+    "kilo",
+    "kimi-code-cli",
     "opencode",
-    "warp"
+    "pi",
+    "warp",
+    "zed"
   ]
 }

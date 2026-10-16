@@ -1,0 +1,102 @@
+name: "Finguru App"
+philosophy: >
+  A warm, quiet workspace for finance analysts. Sand-toned neutrals (page #faf8f5, sidebar
+  #f5f0eb, hairline #e8e2db) carry the structure; one orange accent (#e07a3a) marks only what
+  is active or actionable. Surfaces are white with a 1px warm border and soft accent-tinted
+  shadows. Text is small and dense (13-14px Geist) because the content is tables and figures;
+  hierarchy comes from weight and color, not size.
+primary_mode: "light"
+brand_domain: "internal AI assistant for FP&A analytics: the Finguru web app (rtb_v3)"
+brand_type: "ui-rich"
+mono_for_code: false
+mono_for_metrics: false
+# One font (Geist Variable) for everything; numbers use tabular-nums, not a mono face.
+# There is no dark mode in the app.
+
+source:
+  tokens: "framework/web/frontend/src/index.css (:root)"
+  brand_colors: "web/project-config.ts (theme)"
+  components: "framework/web/frontend/src/components/*.tsx"
+  repo_docs: "docs/design-system/"
+
+tokens:
+  color:
+    base:              # project-configurable (project-config.ts theme)
+      bg_primary: "#faf8f5"
+      bg_sidebar: "#f5f0eb"
+      bg_input: "#ffffff"
+      text_primary: "#1a1a1a"
+      text_secondary: "#6b6b6b"
+      accent: "#e07a3a"
+      accent_hover: "#c96a2e"
+      border: "#e8e2db"
+    derived:           # color-mix, follow the base automatically
+      accent_soft: "color-mix(in oklch, var(--accent) 10%, var(--bg-input))"
+      accent_ring: "color-mix(in oklch, var(--accent) 40%, transparent)"
+      hover_tint: "color-mix(in oklch, var(--text-primary) 4%, transparent)"
+      shadow_tint: "color-mix(in oklch, var(--accent) 12%, transparent)"
+      success: "#2f7d4f"
+      danger: "#b4321f"
+      danger_bg: "color-mix(in oklch, var(--danger) 7%, var(--bg-input))"
+      danger_border: "color-mix(in oklch, var(--danger) 22%, var(--bg-input))"
+    accent_mixes:      # standard inline percentages
+      hover_fill: 6
+      active_fill: 12
+      badge_fill: 18
+      hover_border: "35-45 (into --border)"
+  typography:
+    family: "Geist Variable (bundled via @fontsource-variable/geist)"
+    weights: [500, 600, 700]
+    scale:
+      greeting: { size: 20, weight: 500, tracking: "tight" }
+      page_title: { size: "18-22", weight: "600-700" }
+      dialog_title: { size: 16, weight: 700 }
+      body: { size: 14, weight: 400, line_height: 1.65 }
+      ui: { size: 13, weight: "500-600" }
+      caption: { size: 12, weight: "400-600" }
+      section_label: { size: 11, weight: 600, transform: "uppercase", tracking: "0.08em" }
+      table_header: { size: 10.5, weight: 700, transform: "uppercase", tracking: "wider" }
+      badge: { size: 9, weight: 700, transform: "uppercase" }
+    numbers: "tabular-nums in tables"
+  spacing: "Tailwind 4px scale; chat column max-w-4xl with px-6 gutters"
+  radius:
+    icon_tile: 6
+    control: 8        # default
+    card_menu_banner: 12
+    input_bubble_dialog: 16
+    pill: 999
+  elevation:
+    resting: "0 1px 2px var(--shadow-tint)"
+    raised: "0 2px 12px var(--shadow-tint)"
+    hover: "0 4px 14px var(--shadow-tint)"
+    menu: "0 10px 28px -6px rgba(0,0,0,.14), 0 2px 8px rgba(0,0,0,.06)"
+    dialog: "0 24px 64px rgba(0,0,0,.28) over rgba(20,16,12,.38) scrim"
+    toast: "0 6px 24px rgba(0,0,0,.22)"
+  motion:
+    color: "150ms"
+    border_shadow: "200ms"
+    menu_in: "140ms cubic-bezier(0.16,1,0.3,1): fade + 4px rise + scale .98"
+    hover_lift: "-1px"
+    press: "scale .99"
+    reduced_motion: "honoured globally"
+  focus: "outline 2px var(--accent-ring), offset 2px; inputs: border toward accent + 0 0 0 3px ring"
+  icons: "lucide-react, 12-18px, currentColor"
+
+components:
+  - sidebar: "mode switch (segmented), New chat button, section labels, agent rows (6% hover / 12% active), locked row with pill, user menu with role badge"
+  - welcome: "logo, 20px greeting, 2-column sample-question cards (rounded-xl, hover border + tint shadow)"
+  - chat_input: "rounded-2xl box with tint shadow and accent focus ring; + menu; accent send button; document and image chips"
+  - messages: "user bubble (accent-soft, right); assistant bubble (white, prose, tabular tables, streaming cursor); tool indicator (hover-tint pill)"
+  - tooltip: "rounded-lg, 11px, white, border, shadow-lg, arrow"
+  - menu: "Radix, w-64 rounded-xl p-1.5, items rounded-lg, highlighted --border fill"
+  - dialog_toast: "16px-radius dialog with Cancel/Confirm; pill toast (inverted for success, red for error)"
+  - banner: "accent 8% fill, 25% border, rounded-xl, 18px accent icon"
+  - admin_table: "10.5px uppercase bold headers, hairline rows, hover-tint, tabular-nums"
+
+app_screen:
+  archetype: "chat assistant with sidebar"
+  frame: "browser"
+  frame_params:
+    url: "rtbai.azurewebsites.net"
+    title: "Finguru — Finance AI Assistant"
+  content_seed: "FP&A chat assistant answering a gross-new ARR question with a GEO table, agent list in the sidebar"

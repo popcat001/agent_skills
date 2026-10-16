@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finguru Design System</title>
+<!-- The app bundles Geist via @fontsource-variable/geist; this standalone page loads it from Google Fonts. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap">
+<!-- Tailwind v4 browser build, so the class strings below are copied verbatim from the app's components. -->
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.7/dist/index.global.js" integrity="sha384-VvC4TMG9RMvzPM9UKRYpGbP8G/4qVHiSANfgSa0qX+d3QGIXX3wB8KIuBmCU8fjZ" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/lucide@0.511.0/dist/umd/lucide.min.js" integrity="sha384-YCxwI7HW+hlnktW3yOnKN44k9F/E859McBSCz+NoK45Sww88vGY9Kqfdo794td6J" crossorigin="anonymous"></script>
+<style>
+  /* Copied from framework/web/frontend/src/index.css :root (Finguru theme). Keep in sync. */
+  :root {
+    --bg-primary: #faf8f5;
+    --bg-sidebar: #f5f0eb;
+    --bg-input: #ffffff;
+    --text-primary: #1a1a1a;
+    --text-secondary: #6b6b6b;
+    --accent: #e07a3a;
+    --accent-hover: #c96a2e;
+    --border: #e8e2db;
+    --accent-soft: color-mix(in oklch, var(--accent) 10%, var(--bg-input));
+    --accent-ring: color-mix(in oklch, var(--accent) 40%, transparent);
+    --hover-tint: color-mix(in oklch, var(--text-primary) 4%, transparent);
+    --shadow-tint: color-mix(in oklch, var(--accent) 12%, transparent);
+    --success: #2f7d4f;
+    --danger: #b4321f;
+    --danger-bg: color-mix(in oklch, var(--danger) 7%, var(--bg-input));
+    --danger-border: color-mix(in oklch, var(--danger) 22%, var(--bg-input));
+  }
+  body {
+    margin: 0;
+    font-family: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+  }
+  :where(button, a):focus-visible { outline: 2px solid var(--accent-ring); outline-offset: 2px; }
+  .streaming-cursor::after { content: "▊"; animation: blink 1s step-end infinite; color: var(--accent); margin-left: 2px; }
+  @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
+  @keyframes menu-in { from { opacity: 0; transform: translateY(4px) scale(.98); } to { opacity: 1; transform: none; } }
+  .prose { line-height: 1.65; }
+  .prose p { margin-bottom: .75em; }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose table { font-variant-numeric: tabular-nums; border-collapse: collapse; margin: .5em 0 .75em; }
+  .prose th, .prose td { padding: 6px 12px; border-bottom: 1px solid var(--border); text-align: left; }
+  .prose thead th { background: color-mix(in oklch, var(--text-primary) 3%, transparent); font-weight: 600; white-space: nowrap; }
+  .prose tbody tr:hover { background: var(--hover-tint); }
+  .prose strong { font-weight: 600; }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+  .section-label { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text-secondary); }
+</style>
+</head>
+<body>
+<main class="max-w-6xl mx-auto px-6 py-10">
+
+  <header class="mb-10">
+    <p class="section-label">Docs · Design system</p>
+    <h1 class="text-[22px] font-bold tracking-tight mt-1">Finguru Design System</h1>
+    <p class="text-sm mt-2 max-w-prose text-pretty" style="color: var(--text-secondary)">The web app's tokens and core components, rendered with the same CSS variables and Tailwind classes the app uses. Source of truth: <code>framework/web/frontend/src/index.css</code> and <code>web/project-config.ts</code>.</p>
+  </header>
+
+  <!-- COLOR -->
+  <section class="mb-12">
+    <h2 class="section-label mb-3">Color · base tokens (set in project-config.ts)</h2>
+    <div id="base" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
+    <h2 class="section-label mt-6 mb-3">Color · derived tokens (color-mix, follow the base)</h2>
+    <div id="derived" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
+  </section>
+
+  <!-- TYPE -->
+  <section class="mb-12">
+    <h2 class="section-label mb-3">Type · Geist</h2>
+    <div class="rounded-2xl border border-[var(--border)] bg-[var(--bg-input)] divide-y divide-[var(--border)]">
+      <div class="flex items-baseline gap-6 px-5 py-3"><span class="w-40 shrink-0 text-xs" style="color:var(--text-secondary)">20px · 500 · tight</span><span class="text-xl font-medium tracking-tight">Hi Dev, how can I help you today?</span></div>
+      <div class="flex items-baseline gap-6 px-5 py-3"><span class="w-40 shrink-0 text-xs" style="color:var(--text-secondary)">16px · 700</span><span class="text-[16px] font-bold">Delete this conversation?</span></div>
+      <div class="flex items-baseline gap-6 px-5 py-3"><span class="w-40 shrink-0 text-xs" style="color:var(--text-secondary)">14px · 400 · body</span><span class="text-sm">Gross new ARR grew 12.6% year over year, led by AMER.</span></div>
+      <div class="flex items-baseline gap-6 px-5 py-3"><span class="w-40 shrink-0 text-xs" style="color:var(--text-secondary)">13px · 500 · UI</span><span class="text-[13px] font-medium">Migration &amp; Gross New</span></div>
+      <div class="flex items-baseline gap-6 px-5 py-3"><span class="w-40 shrink-0 text-xs" style="color:var(--text-secondary)">12px · caption</span><span class="text-xs" style="color:var(--text-secondary)">Generated Oct 6, 08:00</span></div>
+      <div class="flex items-baseline gap-6 px-5 py-3"><span class="w-40 shrink-0 text-xs" style="color:var(--text-secondary)">11px · 600 · label</span><span class="section-label">Agents</span></div>
+      <div class="flex items-baseline gap-6 px-5 py-3"><span class="w-40 shrink-0 text-xs" style="color:var(--text-secondary)">10.5px · 700 · table</span><span class="text-[10.5px] uppercase tracking-wider font-bold" style="color:var(--text-secondary)">Agent · Users · Messages</span></div>
+    </div>
+  </section>
+
+  <!-- RADIUS + ELEVATION -->
+  <section class="mb-12">
+    <h2 class="section-label mb-3">Radius &amp; elevation</h2>
+    <div class="flex flex-wrap gap-5 items-end">
+      <div class="text-center"><div class="w-20 h-14 rounded-lg bg-[var(--bg-input)] border border-[var(--border)]"></div><p class="text-xs mt-2" style="color:var(--text-secondary)">8 · controls</p></div>
+      <div class="text-center"><div class="w-20 h-14 rounded-xl bg-[var(--bg-input)] border border-[var(--border)]"></div><p class="text-xs mt-2" style="color:var(--text-secondary)">12 · cards, menus</p></div>
+      <div class="text-center"><div class="w-20 h-14 rounded-2xl bg-[var(--bg-input)] border border-[var(--border)]"></div><p class="text-xs mt-2" style="color:var(--text-secondary)">16 · input, bubbles</p></div>
+      <div class="text-center"><div class="w-20 h-14 rounded-2xl bg-[var(--bg-input)] border border-[var(--border)] shadow-[0_2px_12px_var(--shadow-tint)]"></div><p class="text-xs mt-2" style="color:var(--text-secondary)">raised (tint)</p></div>
+      <div class="text-center"><div class="w-20 h-14 rounded-xl bg-[var(--bg-input)] border border-[var(--border)] shadow-[0_4px_14px_var(--shadow-tint)]"></div><p class="text-xs mt-2" style="color:var(--text-secondary)">hover lift</p></div>
+      <div class="text-center"><div class="w-20 h-14 rounded-xl bg-[var(--bg-input)] border border-[var(--border)]" style="box-shadow:0 10px 28px -6px rgba(0,0,0,.14),0 2px 8px rgba(0,0,0,.06)"></div><p class="text-xs mt-2" style="color:var(--text-secondary)">menu</p></div>
+    </div>
+  </section>
+
+  <!-- APP COMPOSITION -->
+  <section class="mb-12">
+    <h2 class="section-label mb-3">In context · sidebar, messages, input</h2>
+    <div class="flex rounded-2xl overflow-hidden border border-[var(--border)]" style="min-height: 640px">
+
+      <!-- Sidebar -->
+      <aside class="hidden md:flex w-64 shrink-0 flex-col border-r" style="background:var(--bg-sidebar); border-color:var(--border)">
+        <div class="px-4 pt-4 pb-1">
+          <div class="flex gap-1 p-1 rounded-xl" style="background: color-mix(in oklch, var(--text-primary) 5%, transparent)">
+            <button class="flex flex-1 items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-[13px] font-semibold cursor-pointer bg-[var(--bg-input)] text-[var(--accent)] shadow-[0_1px_3px_var(--shadow-tint)]"><i data-lucide="message-circle" class="w-[14px] h-[14px]"></i>Chat</button>
+            <button class="flex flex-1 items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-[13px] font-semibold cursor-pointer text-[var(--text-secondary)] hover:text-[var(--text-primary)]"><i data-lucide="bar-chart-3" class="w-[14px] h-[14px]"></i>Report</button>
+          </div>
+        </div>
+        <div class="px-4 py-2">
+          <button class="group flex items-center gap-2 w-full pl-2.5 pr-3 py-1.5 rounded-lg text-[13px] font-medium cursor-pointer bg-[var(--bg-input)] text-[var(--text-primary)] border border-[var(--border)] shadow-[0_1px_2px_var(--shadow-tint)] transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-px hover:shadow-[0_4px_12px_var(--shadow-tint)] hover:border-[color-mix(in_oklch,var(--accent)_35%,var(--border))] active:translate-y-0 active:scale-[0.99]">
+            <span class="flex items-center justify-center w-5 h-5 rounded-md" style="background: color-mix(in oklch, var(--accent) 12%, transparent); color: var(--accent)"><i data-lucide="square-pen" class="w-3 h-3"></i></span>
+            <span class="flex-1 text-left">New chat</span>
+          </button>
+        </div>
+        <div class="px-4 pt-2 pb-2">
+          <h3 class="section-label mb-1.5 px-1">Agents</h3>
+          <div class="flex flex-col gap-0.5">
+            <button class="flex items-center gap-2 mx-1 px-2 py-1 rounded-lg text-[13px] text-left cursor-pointer bg-[color-mix(in_oklch,var(--accent)_12%,transparent)] text-[var(--accent)]"><i data-lucide="trending-up" class="w-[14px] h-[14px]"></i><span class="flex-1 truncate font-medium">Migration &amp; Gross New</span></button>
+            <button class="flex items-center gap-2 mx-1 px-2 py-1 rounded-lg text-[13px] text-left cursor-pointer text-[var(--text-primary)] hover:bg-[color-mix(in_oklch,var(--accent)_6%,transparent)] transition-colors duration-150"><i data-lucide="briefcase" class="w-[14px] h-[14px]"></i><span class="flex-1 truncate font-medium">Enterprise</span></button>
+            <button class="flex items-center gap-2 mx-1 px-2 py-1 rounded-lg text-[13px] text-left cursor-pointer text-[var(--text-primary)] hover:bg-[color-mix(in_oklch,var(--accent)_6%,transparent)] transition-colors duration-150"><i data-lucide="dollar-sign" class="w-[14px] h-[14px]"></i><span class="flex-1 truncate font-medium">Pricing</span></button>
+            <div class="flex items-center gap-2 mx-1 px-2 py-1 rounded-lg text-[13px]" style="color: var(--text-secondary)"><i data-lucide="lock" class="w-[14px] h-[14px]"></i><span class="flex-1 truncate font-medium">Retention (Preview)</span>
+              <span class="inline-flex items-center gap-1 rounded-full px-1.5 py-px text-[10.5px] font-semibold whitespace-nowrap" style="background: color-mix(in oklch, var(--text-secondary) 12%, var(--bg-sidebar)); color: color-mix(in oklch, var(--text-secondary) 92%, var(--text-primary)); border: 1px solid color-mix(in oklch, var(--border) 80%, var(--text-secondary))">Requested</span></div>
+          </div>
+        </div>
+        <div class="mx-4 mt-2" style="border-top: 1px solid var(--border)"></div>
+        <div class="pt-3 px-4 pb-2"><h3 class="section-label px-1">History</h3>
+          <p class="text-[13px] px-1 mt-2 truncate" style="color:var(--text-primary)">What are the two numbers in this…</p></div>
+        <div class="mt-auto px-3 pb-3">
+          <div class="flex items-center gap-2.5 w-full px-2 py-1.5 rounded-lg">
+            <div class="w-6 h-6 rounded-full flex items-center justify-center text-xs font-medium text-white shrink-0" style="background: var(--accent)">D</div>
+            <p class="text-sm font-medium truncate flex items-center gap-1.5">Dev User
+              <span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:99px;background:color-mix(in oklch, var(--accent) 18%, transparent);color:var(--accent);text-transform:uppercase;letter-spacing:.3px">Super</span></p>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main -->
+      <div class="flex-1 flex flex-col min-w-0" style="background: var(--bg-primary)">
+        <div class="flex-1 px-6 py-6 space-y-5 max-w-4xl w-full mx-auto">
+          <!-- Info banner -->
+          <div class="flex items-start gap-3 px-4 py-3 rounded-xl" style="background: color-mix(in srgb, var(--accent) 8%, var(--bg-primary)); border: 1px solid color-mix(in srgb, var(--accent) 25%, var(--border))">
+            <i data-lucide="sparkles" class="w-[18px] h-[18px] mt-0.5 shrink-0" style="color: var(--accent)"></i>
+            <div class="flex-1 min-w-0"><p class="text-sm font-bold">Teach me to be better</p><p class="text-sm mt-0.5" style="color: var(--text-secondary)">Tap 👍 or 👎 on any response.</p></div>
+          </div>
+          <!-- User bubble -->
+          <div class="flex justify-end"><div class="max-w-[85%] ml-12">
+            <p class="text-xs font-medium mb-1 px-1 text-right" style="color: var(--text-secondary)">You</p>
+            <div class="px-4 py-3 rounded-2xl text-sm leading-relaxed" style="background: var(--accent-soft); border: 1px solid color-mix(in oklch, var(--accent) 18%, var(--border))">
+              <p class="whitespace-pre-wrap">What was gross new ARR by GEO last week?</p>
+            </div>
+          </div></div>
+          <!-- Assistant bubble -->
+          <div class="flex justify-start"><div class="max-w-[95%] mr-4">
+            <p class="text-xs font-medium mb-1 px-1" style="color: var(--text-secondary)">Finguru</p>
+            <div class="px-4 py-3 rounded-2xl text-sm leading-relaxed" style="background: var(--bg-input); border: 1px solid var(--border)">
+              <div class="mb-3 flex items-center gap-2 px-3 py-2 rounded-lg text-xs" style="background: var(--hover-tint); border: 1px solid var(--border)"><i data-lucide="database" class="w-[13px] h-[13px]" style="color:var(--text-secondary)"></i>Querying gross new ARR · done</div>
+              <div class="prose prose-sm text-sm">
+                <p>Gross new ARR was <strong>$417.9M</strong>, up 12.6% year over year.</p>
+                <table><thead><tr><th>GEO</th><th>GN ARR</th><th>YoY</th></tr></thead>
+                  <tbody><tr><td>AMER</td><td>$212.4M</td><td>+14.1%</td></tr><tr><td>EMEA</td><td>$131.7M</td><td>+11.0%</td></tr><tr><td>APAC</td><td>$73.8M</td><td>+10.9%</td></tr></tbody></table>
+                <p class="streaming-cursor">AMER drove most of the growth</p>
+              </div>
+            </div>
+          </div></div>
+        </div>
+        <!-- Chat input -->
+        <div class="px-6 pb-6 pt-2"><div class="max-w-4xl mx-auto">
+          <div class="mb-2 flex flex-wrap items-center gap-2">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs" style="background: var(--bg-input); border: 1px solid var(--border)"><i data-lucide="paperclip" class="w-3 h-3" style="color: var(--text-secondary)"></i><span class="max-w-[240px] truncate">q3_targets.xlsx</span><i data-lucide="x" class="w-[13px] h-[13px]" style="color: var(--text-secondary)"></i></span>
+          </div>
+          <div class="flex items-center gap-3 px-4 py-3 rounded-2xl bg-[var(--bg-input)] border border-[var(--border)] shadow-[0_2px_12px_var(--shadow-tint)] transition-[border-color,box-shadow] duration-200 focus-within:border-[color-mix(in_oklch,var(--accent)_45%,var(--border))] focus-within:shadow-[0_0_0_3px_var(--accent-ring)]">
+            <button class="shrink-0 p-2 rounded-xl cursor-pointer hover:bg-[var(--border)]" aria-label="Add"><i data-lucide="plus" class="w-4 h-4"></i></button>
+            <textarea rows="1" placeholder="How can I help you today?" aria-label="Message" class="flex-1 bg-transparent resize-none outline-none text-sm leading-relaxed placeholder:text-[var(--text-secondary)]"></textarea>
+            <button class="shrink-0 p-2 rounded-xl cursor-pointer active:scale-95" style="background: var(--accent); color: white" aria-label="Send message"><i data-lucide="arrow-up" class="w-4 h-4"></i></button>
+          </div>
+          <p class="text-center text-xs mt-2" style="color: var(--text-secondary)">Finguru can make mistakes. Verify important financial data.</p>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WELCOME CARDS -->
+  <section class="mb-12">
+    <h2 class="section-label mb-3">Welcome · sample question cards</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl">
+      <button class="group flex items-start gap-3 px-4 py-3.5 rounded-xl text-left text-sm leading-snug cursor-pointer bg-[var(--bg-input)] border border-[var(--border)] text-[var(--text-primary)] transition-[border-color,box-shadow,transform] duration-200 hover:border-[color-mix(in_oklch,var(--accent)_45%,var(--border))] hover:shadow-[0_4px_14px_var(--shadow-tint)] active:scale-[0.99]"><i data-lucide="trending-up" class="w-[18px] h-[18px] mt-0.5 shrink-0 text-[var(--text-secondary)] transition-colors duration-200 group-hover:text-[var(--accent)]"></i><span>What's the migration performance for last week?</span></button>
+      <button class="group flex items-start gap-3 px-4 py-3.5 rounded-xl text-left text-sm leading-snug cursor-pointer bg-[var(--bg-input)] border border-[var(--border)] text-[var(--text-primary)] transition-[border-color,box-shadow,transform] duration-200 hover:border-[color-mix(in_oklch,var(--accent)_45%,var(--border))] hover:shadow-[0_4px_14px_var(--shadow-tint)] active:scale-[0.99]"><i data-lucide="dollar-sign" class="w-[18px] h-[18px] mt-0.5 shrink-0 text-[var(--text-secondary)] transition-colors duration-200 group-hover:text-[var(--accent)]"></i><span>What was the gross new ARR by GEO and by RTM last week?</span></button>
+    </div>
+  </section>
+
+  <!-- OVERLAYS -->
+  <section class="mb-12">
+    <h2 class="section-label mb-3">Overlays · tooltip, menu, dialog, toast</h2>
+    <div class="flex flex-wrap gap-8 items-start">
+      <div class="max-w-[16rem] rounded-lg px-2.5 py-1.5 text-[11px] leading-snug shadow-lg border" style="background: var(--bg-input); border-color: var(--border)">Subscription migration and gross-new revenue analytics</div>
+
+      <div class="w-64 rounded-xl p-1.5" style="background: var(--bg-input); border: 1px solid var(--border); box-shadow: 0 10px 28px -6px rgba(0,0,0,.14), 0 2px 8px rgba(0,0,0,.06); animation: menu-in 140ms cubic-bezier(.16,1,.3,1)">
+        <div class="flex w-full items-start gap-2.5 rounded-lg px-2.5 py-2 bg-[var(--border)]"><i data-lucide="paperclip" class="w-4 h-4 mt-0.5"></i><div><p class="text-[13px] font-medium">Attach file</p><p class="text-[11.5px]" style="color: var(--text-secondary)">.md .csv .xlsx .pdf, images</p></div></div>
+        <div class="flex w-full items-start gap-2.5 rounded-lg px-2.5 py-2"><i data-lucide="book-open" class="w-4 h-4 mt-0.5"></i><div><p class="text-[13px] font-medium">Skills</p><p class="text-[11.5px]" style="color: var(--text-secondary)">Browse this agent's skills</p></div></div>
+      </div>
+
+      <div role="dialog" style="background: var(--bg-input); border: 1px solid var(--border); border-radius: 16px; box-shadow: 0 24px 64px rgba(0,0,0,.28); width: min(420px, 100%); padding: 22px">
+        <h3 style="margin: 0 0 8px; font-size: 16px; font-weight: 700">Delete this conversation?</h3>
+        <p style="margin: 0 0 18px; font-size: 13.5px; color: var(--text-secondary); line-height: 1.5">This can't be undone.</p>
+        <div class="flex justify-end gap-2.5">
+          <button class="cursor-pointer" style="padding: 8px 14px; border-radius: 8px; border: 1.5px solid var(--border); background: transparent; font-size: 13px; font-weight: 500">Cancel</button>
+          <button class="cursor-pointer" style="padding: 8px 16px; border-radius: 8px; border: none; background: var(--danger); color: white; font-size: 13px; font-weight: 600">Delete</button>
+        </div>
+      </div>
+
+      <div role="status" class="inline-flex items-center gap-2" style="background: var(--text-primary); color: var(--bg-primary); padding: 10px 18px; border-radius: 999px; font-size: 13px; font-weight: 600; box-shadow: 0 6px 24px rgba(0,0,0,.22)"><i data-lucide="check" class="w-[15px] h-[15px]"></i>Link copied</div>
+    </div>
+  </section>
+
+  <!-- ADMIN TABLE -->
+  <section>
+    <h2 class="section-label mb-3">Admin · table</h2>
+    <div class="rounded-2xl p-5" style="background: var(--bg-input); border: 1px solid var(--border); box-shadow: 0 1px 4px rgba(0,0,0,.06)">
+      <table class="w-full border-collapse" style="font-variant-numeric: tabular-nums">
+        <thead><tr>
+          <th class="text-left text-[10.5px] uppercase tracking-wider font-bold pb-3 px-3" style="color: var(--text-secondary)">Agent</th>
+          <th class="text-left text-[10.5px] uppercase tracking-wider font-bold pb-3 px-3" style="color: var(--text-secondary)">Users</th>
+          <th class="text-left text-[10.5px] uppercase tracking-wider font-bold pb-3 px-3" style="color: var(--text-secondary)">Messages</th>
+        </tr></thead>
+        <tbody class="text-[13px]">
+          <tr class="hover:bg-[var(--hover-tint)]" style="border-top: 1px solid var(--border)"><td class="px-3 py-2.5 font-medium">Migration &amp; Gross New</td><td class="px-3 py-2.5">142</td><td class="px-3 py-2.5">3,918</td></tr>
+          <tr class="hover:bg-[var(--hover-tint)]" style="border-top: 1px solid var(--border)"><td class="px-3 py-2.5 font-medium">Enterprise</td><td class="px-3 py-2.5">57</td><td class="px-3 py-2.5">1,204</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<script>
+  const swatch = (name, note) => `
+    <div class="rounded-xl overflow-hidden border border-[var(--border)] bg-[var(--bg-input)]">
+      <div class="h-14" style="background: var(${name}); border-bottom: 1px solid var(--border)"></div>
+      <div class="px-3 py-2"><p class="text-[13px] font-semibold">${name}</p>
+        <p class="text-[11.5px]" style="color: var(--text-secondary)">${note}</p></div>
+    </div>`;
+  const css = getComputedStyle(document.documentElement);
+  document.getElementById("base").innerHTML = ["--bg-primary", "--bg-sidebar", "--bg-input", "--text-primary",
+    "--text-secondary", "--accent", "--accent-hover", "--border"].map((n) => swatch(n, css.getPropertyValue(n).trim())).join("");
+  document.getElementById("derived").innerHTML = [["--accent-soft", "accent 10% · user bubble"],
+    ["--accent-ring", "accent 40% · focus"], ["--hover-tint", "text 4% · hover"], ["--shadow-tint", "accent 12% · shadows"],
+    ["--success", "#2f7d4f"], ["--danger", "#b4321f"], ["--danger-bg", "danger 7%"], ["--danger-border", "danger 22%"]]
+    .map(([n, note]) => swatch(n, note)).join("");
+  lucide.createIcons();
+</script>
+</body>
+</html>
