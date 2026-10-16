@@ -1,4 +1,4 @@
 .chat/
 *.pyc
 __pycache__/
-skills/.system/
+skills/.system/CLAUDE.md
